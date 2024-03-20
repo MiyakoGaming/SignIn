@@ -1,0 +1,22 @@
+{
+  "name": "frontend-automation-test",
+  "version": "1.0.0",
+  "description": "Write test using Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+  },
+  "keywords": [
+    "Cypress",
+    "testing"
+  ],
+  "author": "Miyako",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.7.0",
+    "prettier": "^3.2.5"
+  },
+  "devDependencies": {
+    "start-server-and-test": "^2.0.3"
+  }
+}
