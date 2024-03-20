@@ -61,5 +61,4 @@ it('Player login account failed or success when player insert empty / invalid / 
 	})
 
 	cy.get('@loginButton').click()
-	
 })
