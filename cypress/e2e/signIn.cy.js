@@ -1,64 +1,80 @@
 beforeEach(() => {
-	cy.visit('http://my.jufsolution1.com')
+	cy.visit('https://www.jufsolution3.com/auth/signin?redirect=/')
 })
 
-it('Player login account failed or success when player insert empty / invalid / valid username and password', () => {
-	cy.get(
-		':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_guestActions__La_tU > .user-quick-view_signInLink__trPsS'
-	).as('signInPage')
-	cy.get('@signInPage').click()
+function getUsernameAndPassword(usernameKey, passwordKey) {
+	return new Promise(resolve => {
+		cy.fixture('shortcut.json').then(uf => {
+			resolve({
+				username: uf[usernameKey],
+				password: uf[passwordKey],
+			})
+		})
+	})
+}
 
-	//Empty username and password
+it.skip('Player login account successfully  .skip()', async () => {
+	const validata = await getUsernameAndPassword(
+		'validUsername',
+		'validPassword'
+	)
+
+	const invalidIdNo = await getDepId('invalidID1', 'validID1')
+
+	const { username, password } = validata
+
+	const { invalidID1, validID1 } = invalidIdNo
+
 	cy.get('.inputs_textContainer__ksnHm > input').as('username')
 	cy.get('@username').click()
+	cy.get('@username').type(username).should('have.value', username)
 
 	cy.get('.inputs_inputContainer__YQKEw > input').as('password')
 	cy.get('@password').click()
+	cy.get('@password').type(password).should('have.value', password)
 
 	cy.get('form > .TT__standard-button').as('loginButton')
 	cy.get('@loginButton').click()
+	cy.get(
+		':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_user__FkeJ_ > :nth-child(2) > .user-quick-view_playerMainContent__rDEHg > :nth-child(1)'
+	).as('profileUsername')
+	cy.get('@profileUsername').should('have.text', username)
+})
 
-	//Invalid username and password
-	cy.fixture('shortcut').then(shortcut => {
-		const username = shortcut.invalidUsername
-		const password = shortcut.invalidPassword
+it('Player login account failed when player insert invalid username and password', async () => {
+	const invalidata = await getUsernameAndPassword(
+		'invalidUsername',
+		'invalidPassword'
+	)
 
-		cy.get('@username').type(username)
-		cy.get('@password').type(password)
-	})
+	const { username, password } = invalidata
+
+	cy.get('.inputs_textContainer__ksnHm > input').as('username')
+	cy.get('@username').invoke('attr', 'placeholder').should('eq', 'Username')
+	cy.get('@username').click().should('have.text', '')
+	cy.get('@username').type(username)
+	cy.get('@username').should('have.value', username)
+
+	cy.get('.inputs_inputContainer__YQKEw > input').as('password')
+	cy.get('@password').invoke('attr', 'placeholder').should('eq', 'Password');
+	cy.get('@password').click().should('have.text', '')
+	cy.get('@password').type(password)
+	cy.get('@password').should('have.value', password)
+
+
+	cy.get('form > .TT__standard-button').as('loginButton')
+	cy.get('@loginButton').should('have.text', 'Sign In')
 	cy.get('@loginButton').click()
 
-	cy.get('.modal_action__0o7AY > .TT__standard-button').as('okayBTN')
-	cy.get('@okayBTN').click()
+	cy.get('.modal_hero__P0JkX').as("loginMsg")
+	cy.get('@loginMsg').should('be.visible');
+	cy.get('@loginMsg').should('have.text', 'Unable to log in.')
 
-	//Clear previous detail before insert new details
-	cy.get('@username').clear()
-	cy.get('@password').clear()
+	cy.get('.modal_action__0o7AY > .TT__standard-button').as('okay')
+	cy.get('@okay').should('be.visible');
+	cy.get('@okay').should('have.text', 'Okay')
+	cy.get('@okay').click()
 
-	//Invalid username and empty password
-	cy.fixture('shortcut').then(shortcut => {
-		const username = shortcut.invalidUsername
-
-		cy.get('@username').type(username)
-	})
-
-	cy.get('@loginButton').click()
-
-	cy.get('.modal_action__0o7AY > .TT__standard-button').as('okayBTN')
-	cy.get('@okayBTN').click()
-
-	//Clear previous detail before insert new details
-	cy.get('@username').clear()
-	cy.get('@password').clear()
-
-	//Valid username and password
-	cy.fixture('shortcut').then(shortcut => {
-		const username = shortcut.validUsername
-		const password = shortcut.validPassword
-
-		cy.get('@username').type(username)
-		cy.get('@password').type(password)
-	})
-
-	cy.get('@loginButton').click()
+	cy.get('@username').invoke('attr', 'placeholder').should('eq', 'Username')
+	cy.get('@password').invoke('attr', 'placeholder').should('eq', 'Password');
 })

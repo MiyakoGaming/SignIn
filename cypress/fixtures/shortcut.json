@@ -1,6 +1,10 @@
 {
-    "validUsername": "mikodemo1001",
+    "validUsername": "mikodemo1002",
     "validPassword": "Yes888888",
-    "invalidUsername": "mickeymouse@344",
-    "invalidPassword": "aaabbb1234"
+    "invalidUsername": "mickeymouse",
+    "invalidPassword": "aaabbb1234",
+    "accNo1": "12345678999999@",
+    "accNo2": "abcd123456789",
+    "accNo3": "123^&*(ppllk963"
+    
   }
