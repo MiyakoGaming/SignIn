@@ -1,5 +1,5 @@
 beforeEach(() => {
-	cy.visit('https://my.jufsolution1.com/auth/signin?redirect=/')
+	cy.visit('https://www.jufsolution3.com/auth/signin?redirect=/')
 })
 
 function getUsernameAndPassword(usernameKey, passwordKey) {

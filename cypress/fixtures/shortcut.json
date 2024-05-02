@@ -5,6 +5,13 @@
     "invalidPassword": "aaabbb1234",
     "accNo1": "12345678999999@",
     "accNo2": "abcd123456789",
-    "accNo3": "123^&*(ppllk963"
-    
+    "accNo3": "123^&*(ppllk963",
+    "currentPassword1": "Yes888888",
+    "currentPassword2": "miko66666",
+    "currentPassword3": "Apple@678",
+    "newPassword1": "miko66666",
+    "newPassword2": "Apple@678",
+    "newPassword3": "Yes888888",
+    "wrongPassword1" : "abc12",
+    "wrongPassword2" : "AAaaBBbbCCccDDddEEeeFFffGGgg12"
   }

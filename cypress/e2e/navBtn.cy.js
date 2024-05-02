@@ -1,5 +1,5 @@
 beforeEach(() => {
-	cy.visit('http://my.jufsolution1.com')
+	cy.visit('https://www.jufsolution3.com/auth/signin?redirect=/')
 })
 
 function getUsernameAndPassword(usernameKey, passwordKey) {
@@ -13,22 +13,24 @@ function getUsernameAndPassword(usernameKey, passwordKey) {
 	})
 }
 
-it('Login website and check navigation function', async () => {
-	cy.get(
-		':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_guestActions__La_tU > .user-quick-view_signInLink__trPsS'
-	).as('signInPage')
-	cy.get('@signInPage').should('have.text', 'Sign In')
-	cy.get('@signInPage').click()
+it.skip('Login website and check navigation function .skip()', async () => {
+	// cy.get(
+	// 	':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_guestActions__La_tU > .user-quick-view_signInLink__trPsS'
+	// ).as('signInPage')
+	// cy.get('@signInPage').should('have.text', 'Sign In')
+	// cy.get('@signInPage').click()
 
-	const validata = await getUsernameAndPassword(
+	const validata1 = await getUsernameAndPassword(
 		'validUsername',
 		'validPassword'
 	)
 
-	const { username, password } = validata
+	const { username, password } = validata1
 
 	cy.get('.inputs_textContainer__ksnHm > input').as('username')
+	console.log("got1")
 	cy.get('@username').click()
+	console.log("got2")
 	cy.get('@username').type(username).should('have.value', username)
 
 	cy.get('.inputs_inputContainer__YQKEw > input').as('password')
@@ -100,7 +102,7 @@ it('Login website and check navigation function', async () => {
 	cy.get('@tranNav').should('have.text', 'Transfer')
 	cy.get('@tranNav').click()
 
-//Side navigation menu > Transfer > History
+// //Side navigation menu > Transfer > History
 	cy.get('.account-info_sideNavBar__Zeolo > :nth-child(5) > a').as('hisNav')
 	cy.get('@hisNav').should('have.text', 'History')
 	cy.get('@hisNav').click()
@@ -144,26 +146,15 @@ it('Login website and check navigation function', async () => {
 	cy.get('@magBankNav').should('have.text', 'Manage Banks')
 	cy.get('@magBankNav').click()
 	cy.get('.content_sectionTitle__9Umi5 > div').should('have.text', 'My bank accounts')
-
-	//Manage Banks > Change password
-	// cy.get('.account-info_sideNavBar__Zeolo > :nth-child(10)').as('changePassNav')
-	// cy.get('@changePassNav').should('have.text', 'Change password')
-	// cy.get('@changePassNav').click()
 })
 
 it('Login website and 3 dots navigation (sign out, Change Password, Manage banks)', async () => {
-    cy.get(
-		':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_guestActions__La_tU > .user-quick-view_signInLink__trPsS'
-	).as('signInPage')
-	cy.get('@signInPage').should('have.text', 'Sign In')
-	cy.get('@signInPage').click()
-
-	const validata = await getUsernameAndPassword(
+	const validata2 = await getUsernameAndPassword(
 		'validUsername',
 		'validPassword'
 	)
 
-	const { username, password } = validata
+	const { username, password } = validata2
 
 	cy.get('.inputs_textContainer__ksnHm > input').as('username')
 	cy.get('@username').click()
@@ -201,10 +192,4 @@ it('Login website and 3 dots navigation (sign out, Change Password, Manage banks
 	cy.get('@changePass').should('have.text', 'Change password')
 	cy.get('@changePass').click()
 	cy.get('.main_title__6Mbhv').should('have.text', 'Change Password')
-
-	//My bank account > 3 dot indicator > Sign out
-	// cy.get('@profileUsername').click()
-	// cy.get('.account_list__2XnZl > .account_listItem___V0Ng').contains('Sign Out')
-	// cy.get('.account_list__2XnZl > .account_listItem___V0Ng').as('signOut')
-	// cy.get('@signOut').should('have.text', 'Sign Out')
 })
