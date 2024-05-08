@@ -13,5 +13,11 @@
     "newPassword2": "Apple@678",
     "newPassword3": "Yes888888",
     "wrongPassword1" : "abc12",
-    "wrongPassword2" : "AAaaBBbbCCccDDddEEeeFFffGGgg1234"
+    "wrongPassword2" : "AAaaBBbbCCccDDddEEeeFFffGGgg1234",
+    "invalidAccNo1" : "1234",
+    "invalidAccNo2" : "1111122222333334444455",
+    "validAccNo1" : "abcd1234",
+    "validAccNo2" : "108465257789",
+    "validAccNo3" : "TXnBCmkzZfpkDfEHgmc9",
+    "validAccNo4" : "11111222223333344444"
   }

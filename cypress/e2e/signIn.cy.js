@@ -51,10 +51,12 @@ it.skip('Player login account failed when player insert invalid username and pas
 	cy.get('@password').invoke('attr', 'placeholder').should('eq', 'Password');
 })
 
+
 it('Player login account successfully', async () => {
+
 	const validata = await getUsernameAndPassword(
 		'validUsername',
-		'validPassword'
+		'invalidPassword'
 	)
 
 	const { username, password } = validata
