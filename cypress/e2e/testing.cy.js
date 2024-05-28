@@ -15,7 +15,7 @@ cy.get('.inputs_textContainer__ksnHm > input').as('username')
 
 	cy.get('.inputs_inputContainer__YQKEw > input').as('password')
 	cy.get('@password').click()
-	cy.get('@password').type('pppppp')
+	cy.get('@password').type('Yes8888880')
 
 	cy.get('form > .TT__standard-button').as('loginButton')
 	cy.get('@loginButton').click()
