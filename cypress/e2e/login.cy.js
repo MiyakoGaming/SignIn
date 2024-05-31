@@ -37,7 +37,7 @@ beforeEach(() => {
 })
 
 // testSignIn("valid username", "valid password", true)
-it('Player login with valid username and password', () => {
+it('Verify successful user authentication with valid username and password', () => {
 	cy.get(usernameContainer).click()
 	cy.get(usernameContainer).type(validUsername).should('have.value', validUsername)
 
@@ -51,7 +51,7 @@ it('Player login with valid username and password', () => {
 })
 
 //testSignIn("valid username", "valid password", true --> false)
-it('Player login wrong account with valid username and password', () => {
+it('Verify unsuccessful user authentication with valid username and password', () => {
     cy.get(usernameContainer).click()
 	cy.get(usernameContainer).type(validUsername).should('have.value', validUsername)
 
@@ -65,7 +65,7 @@ it('Player login wrong account with valid username and password', () => {
 })
 
 //testSignIn("valid username", "invalid password", false)
-it('Player login with valid username and invalid password', () => {
+it('Verify unsuccessful user authentication with valid username and invalid password', () => {
     cy.get(usernameContainer).click()
 	cy.get(usernameContainer).type(validUsername).should('have.value', validUsername)
 
@@ -79,7 +79,7 @@ it('Player login with valid username and invalid password', () => {
 })
 
 //testSignIn("invalid username", "valid password", false)
-it('Player login with invalid username and valid password', () => {
+it('Verify unsuccessful user authentication with invalid username and valid password', () => {
     cy.get(usernameContainer).click()
 	cy.get(usernameContainer).type(invalidUsername).should('have.value', invalidUsername)
 
@@ -93,7 +93,7 @@ it('Player login with invalid username and valid password', () => {
 })
 
 //testSignIn("invalid username", "invalid password", false)
-it('Player login with invalid username and password', () => {
+it('Verify unsuccessful user authentication with invalid username and password', () => {
     cy.get(usernameContainer).click()
 	cy.get(usernameContainer).type(invalidUsername).should('have.value', invalidUsername)
 
@@ -107,7 +107,7 @@ it('Player login with invalid username and password', () => {
 })
 
 //testSignIn("invalid username", "invalid password", false --> true)
-it('Player login with invalid username and password', () => {
+it('Verify unsuccessful user authentication with invalid username and password', () => {
     cy.get(usernameContainer).click()
 	cy.get(usernameContainer).type(invalidUsername).should('have.value', invalidUsername)
 

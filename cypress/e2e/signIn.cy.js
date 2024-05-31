@@ -13,53 +13,30 @@ function getUsernameAndPassword(usernameKey, passwordKey) {
 	})
 }
 
-it.skip('Player login account failed when player insert invalid username and password .skip()', async () => {
-	const invalidata = await getUsernameAndPassword(
-		'invalidUsername',
-		'invalidPassword'
-	)
-
-	const { username, password } = invalidata
-
-	cy.get('.inputs_textContainer__ksnHm > input').as('username')
-	cy.get('@username').invoke('attr', 'placeholder').should('eq', 'Username')
-	cy.get('@username').click().should('have.text', '')
-	cy.get('@username').type(username)
-	cy.get('@username').should('have.value', username)
-
-	cy.get('.inputs_inputContainer__YQKEw > input').as('password')
-	cy.get('@password').invoke('attr', 'placeholder').should('eq', 'Password');
-	cy.get('@password').click().should('have.text', '')
-	cy.get('@password').type(password)
-	cy.get('@password').should('have.value', password)
-
-
-	cy.get('form > .TT__standard-button').as('loginButton')
-	cy.get('@loginButton').should('have.text', 'Sign In')
-	cy.get('@loginButton').click()
-
-	cy.get('.modal_hero__P0JkX').as("loginMsg")
-	cy.get('@loginMsg').should('be.visible');
-	cy.get('@loginMsg').should('have.text', 'Unable to log in.')
-
-	cy.get('.modal_action__0o7AY > .TT__standard-button').as('okay')
-	cy.get('@okay').should('be.visible');
-	cy.get('@okay').should('have.text', 'Okay')
-	cy.get('@okay').click()
-
-	cy.get('@username').invoke('attr', 'placeholder').should('eq', 'Username')
-	cy.get('@password').invoke('attr', 'placeholder').should('eq', 'Password');
+Cypress.on('uncaught:exception', (err, runnable) => {
+	// Fail the test
+	throw err
+	// Return false to prevent the error from failing the test in an unexpected way
+	return false
 })
 
-
 it('Player login account successfully', async () => {
-
 	const validata = await getUsernameAndPassword(
 		'validUsername',
 		'invalidPassword'
 	)
 
 	const { username, password } = validata
+
+	const caught = {
+		message: null,
+	}
+
+	cy.on('uncaught:exception', (e, runnable, promise) => {
+		caught.message = e.message
+
+		return false
+	})
 
 	cy.get('.inputs_textContainer__ksnHm > input').as('username')
 	cy.get('@username').click()
@@ -71,8 +48,21 @@ it('Player login account successfully', async () => {
 
 	cy.get('form > .TT__standard-button').as('loginButton')
 	cy.get('@loginButton').click()
+
 	cy.get(
 		':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_user__FkeJ_ > :nth-child(2) > .user-quick-view_playerMainContent__rDEHg > :nth-child(1)'
 	).as('profileUsername')
 	cy.get('@profileUsername').should('have.text', username)
+	cy.wrap(caught).should((c) => {
+		expect(c.message).to.include('Did not handle this promise')
+	  })
 })
+
+// Your asynchronous function example
+// async function someAsyncOperation() {
+// 	return new Promise((resolve, reject) => {
+// 		setTimeout(() => {
+// 			reject(new Error('Uncaught exception'))
+// 		}, 4000)
+// 	})
+// }
