@@ -1,14 +1,9 @@
-//valid username = "mikodemo1002"
-//valid password = "Yes888888"
-//invalid username = "mickey678"
-//invalid password = "yes789631"
-
-//1. testSignIn("valid username", "valid password", true)
-//2. testSignIn("valid username", "valid password", true --> false)
-//3. testSignIn("valid username", "invalid password", false)
-//4. testSignIn("invalid username", "valid password", false)
-//5. testSignIn("invalid username", "invalid password", false)
-//6. testSignIn("invalid username", "invalid password", false --> true)
+//1. testSignIn{(valid username, valid password, true) , (test case, true)}
+//2. testSignIn{(valid username, valid password, true) , (test case, false)}
+//3. testSignIn{(valid username, invalid password, false) , (test case, false)}
+//4. testSignIn{(invalid username, valid password, false) , (test case, false)}
+//5. testSignIn{(invalid username, invalid password, false) , (test case, false)}
+//6. testSignIn{(invalid username, invalid password, false) , (test case, true)}
 
 Cypress.on('uncaught:exception', (err, runnable) => {
 	// Fail the test
@@ -26,17 +21,22 @@ const profileUsername =
 const signInErrorPopUp = '.modal_hero__P0JkX';
 const closeSignInErrorPopUp = '.modal_action__0o7AY > .TT__standard-button';
 
-    //Login detail
+//Login detail
 var validUsername = 'mikodemo1002'
 var validPassword = 'Yes888888'
 var invalidUsername = 'mickey678'
 var invalidPassword = 'yes789631'
 
+//Text
+var signInButtonText = 'Sign In'
+var signInErrorPopUpText = 'Unable to log in.'
+var closeSignInErrorPopUpText = 'Okay'
+
 beforeEach(() => {
 	cy.visit('https://www.jufsolution3.com/auth/signin?redirect=/')
 })
 
-// testSignIn("valid username", "valid password", true)
+// testSignIn{(valid username, valid password, true) , (test case, true)}
 it('Verify successful user authentication with valid username and password', () => {
 	cy.get(usernameContainer).click()
 	cy.get(usernameContainer).type(validUsername).should('have.value', validUsername)
@@ -44,13 +44,13 @@ it('Verify successful user authentication with valid username and password', () 
 	cy.get(passwordContainer).click()
 	cy.get(passwordContainer).type(validPassword).should('have.value', validPassword)
 
-	cy.get(signInButton).should('have.text', 'Sign In')
+	cy.get(signInButton).should('have.text', signInButtonText)
 	cy.get(signInButton).click()
 
 	cy.get(profileUsername).should('have.text', validUsername)
 })
 
-//testSignIn("valid username", "valid password", true --> false)
+//testSignIn{(valid username, valid password, true) , (test case, false)}
 it('Verify unsuccessful user authentication with valid username and password', () => {
     cy.get(usernameContainer).click()
 	cy.get(usernameContainer).type(validUsername).should('have.value', validUsername)
@@ -58,13 +58,13 @@ it('Verify unsuccessful user authentication with valid username and password', (
 	cy.get(passwordContainer).click()
 	cy.get(passwordContainer).type(validPassword).should('have.value', validPassword)
 
-	cy.get(signInButton).should('have.text', 'Sign In')
+	cy.get(signInButton).should('have.text', signInButtonText)
 	cy.get(signInButton).click()
 
 	cy.get(profileUsername).should('have.text', invalidUsername)
 })
 
-//testSignIn("valid username", "invalid password", false)
+//testSignIn{(valid username, invalid password, false) , (test case, false)}
 it('Verify unsuccessful user authentication with valid username and invalid password', () => {
     cy.get(usernameContainer).click()
 	cy.get(usernameContainer).type(validUsername).should('have.value', validUsername)
@@ -72,13 +72,13 @@ it('Verify unsuccessful user authentication with valid username and invalid pass
 	cy.get(passwordContainer).click()
 	cy.get(passwordContainer).type(invalidPassword).should('have.value', invalidPassword)
 
-	cy.get(signInButton).should('have.text', 'Sign In')
+	cy.get(signInButton).should('have.text', signInButtonText)
 	cy.get(signInButton).click()
 
     cy.get(profileUsername).should('have.text', validUsername)
 })
 
-//testSignIn("invalid username", "valid password", false)
+//testSignIn{(invalid username, valid password, false) , (test case, false)}
 it('Verify unsuccessful user authentication with invalid username and valid password', () => {
     cy.get(usernameContainer).click()
 	cy.get(usernameContainer).type(invalidUsername).should('have.value', invalidUsername)
@@ -86,13 +86,13 @@ it('Verify unsuccessful user authentication with invalid username and valid pass
 	cy.get(passwordContainer).click()
 	cy.get(passwordContainer).type(validPassword).should('have.value', validPassword)
 
-	cy.get(signInButton).should('have.text', 'Sign In')
+	cy.get(signInButton).should('have.text', signInButtonText)
 	cy.get(signInButton).click()
 
     cy.get(profileUsername).should('have.text', validUsername)
 })
 
-//testSignIn("invalid username", "invalid password", false)
+//testSignIn{(invalid username, invalid password, false) , (test case, false)}
 it('Verify unsuccessful user authentication with invalid username and password', () => {
     cy.get(usernameContainer).click()
 	cy.get(usernameContainer).type(invalidUsername).should('have.value', invalidUsername)
@@ -100,13 +100,13 @@ it('Verify unsuccessful user authentication with invalid username and password',
 	cy.get(passwordContainer).click()
 	cy.get(passwordContainer).type(invalidPassword).should('have.value', invalidPassword)
 
-	cy.get(signInButton).should('have.text', 'Sign In')
+	cy.get(signInButton).should('have.text', signInButtonText)
 	cy.get(signInButton).click()
 
     cy.get(profileUsername).should('have.text', validUsername)
 })
 
-//testSignIn("invalid username", "invalid password", false --> true)
+//testSignIn{(invalid username, invalid password, false) , (test case, true)}
 it('Verify unsuccessful user authentication with invalid username and password', () => {
     cy.get(usernameContainer).click()
 	cy.get(usernameContainer).type(invalidUsername).should('have.value', invalidUsername)
@@ -114,12 +114,12 @@ it('Verify unsuccessful user authentication with invalid username and password',
 	cy.get(passwordContainer).click()
 	cy.get(passwordContainer).type(invalidPassword).should('have.value', invalidPassword)
 
-	cy.get(signInButton).should('have.text', 'Sign In')
+	cy.get(signInButton).should('have.text', signInButtonText)
 	cy.get(signInButton).click()
 
     cy.get(signInErrorPopUp).should('be.visible');
-    cy.get(signInErrorPopUp).should('have.text', 'Unable to log in.')
+    cy.get(signInErrorPopUp).should('have.text', signInErrorPopUpText)
 
-    cy.get(closeSignInErrorPopUp).should('be.visible') .and('have.text', 'Okay')
+    cy.get(closeSignInErrorPopUp).should('be.visible') .and('have.text', closeSignInErrorPopUpText)
 	cy.get(closeSignInErrorPopUp).click()
 })

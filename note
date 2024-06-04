@@ -1,40 +1,49 @@
-beforeEach(() => {
-	cy.visit('https://my.jufsolution1.com/auth/signin?redirect=/')
-})
+// beforeEach(() => {
+// 	cy.visit('https://my.jufsolution1.com/auth/signin?redirect=/')
+// })
 
-function getUsernameAndPassword(usernameKey, passwordKey) {
-	return new Promise(resolve => {
-		cy.fixture('shortcut.json').then(uf => {
-			resolve({
-				username: uf[usernameKey],
-				password: uf[passwordKey],
-			})
-		})
-	})
-}
+// function getUsernameAndPassword(usernameKey, passwordKey) {
+// 	return new Promise(resolve => {
+// 		cy.fixture('shortcut.json').then(uf => {
+// 			resolve({
+// 				username: uf[usernameKey],
+// 				password: uf[passwordKey],
+// 			})
+// 		})
+// 	})
+// }
 
-function getDepId(depositID1, depositID2) {
-	return new Promise(resolve => {
-		cy.fixture('depID.json').then(uf => {
-			resolve({
-				invalidID1: uf[depositID1],
-				validID1: uf[depositID2],
-			})
-		})
-	})
-}
+// function getDepId(depositID1, depositID2) {
+// 	return new Promise(resolve => {
+// 		cy.fixture('depID.json').then(uf => {
+// 			resolve({
+// 				invalidID1: uf[depositID1],
+// 				validID1: uf[depositID2],
+// 			})
+// 		})
+// 	})
+// }
 
-it.skip('Player insert invalid amount & transaction ID (Deposit Unsuccessfully) .skip()', async () => {
-	const validata = await getUsernameAndPassword(
-		'validUsername',
-		'validPassword'
-	)
+// it.skip('Player insert invalid amount & transaction ID (Deposit Unsuccessfully) .skip()', async () => {
+// 	const validata = await getUsernameAndPassword(
+// 		'validUsername',
+// 		'validPassword'
+// 	)
 
-	const invalidIdNo = await getDepId('invalidID1', 'validID1')
+// 	const invalidIdNo = await getDepId('invalidID1', 'validID1')
 
-	const { username, password } = validata
+// 	const { username, password } = validata
 
-	const { invalidID1, validID1 } = invalidIdNo
-})
+// 	const { invalidID1, validID1 } = invalidIdNo
+// })
 
+
+// -- This is a parent command --
+// Cypress.Commands.add('login', (email, password) => { ... })
+// -- This is a child command --
+// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
+// -- This is a dual command --
+// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
+// -- This will overwrite an existing command --
+// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
