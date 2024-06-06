@@ -24,6 +24,26 @@
 // 	})
 // }
 
+// function getNewPassword(currentPassword, newPassword, wrongPass) {
+// 	return new Promise(resolve => {
+// 		cy.fixture('shortcut.json').then(uf => {
+// 			resolve({
+// 				currentPass: uf[currentPassword],
+// 				newPass: uf[newPassword],
+//                 wrgPass: uf[wrongPass],
+// 			})
+// 		})
+// 	})
+// }
+
+// const passwordData1 = await getNewPassword(
+//     'currentPassword1',
+//     'newPassword3',
+//     'wrongPassword1'
+// )
+
+// const {currentPass, newPass, wrgPass} = passwordData1
+
 // it.skip('Player insert invalid amount & transaction ID (Deposit Unsuccessfully) .skip()', async () => {
 // 	const validata = await getUsernameAndPassword(
 // 		'validUsername',
@@ -36,4 +56,20 @@
 
 // 	const { invalidID1, validID1 } = invalidIdNo
 // })
+
+
+// -- This is a parent command --
+// Cypress.Commands.add('login', (email, password) => { ... })
+//
+//
+// -- This is a child command --
+// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
+//
+//
+// -- This is a dual command --
+// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
+//
+//
+// -- This will overwrite an existing command --
+// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 

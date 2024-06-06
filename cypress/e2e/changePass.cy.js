@@ -1,170 +1,112 @@
+//1. testChangePassword{(invalid current password, valid new password, valid retype password, false) , (test case, false)}
+//2. testChangePassword{(valid current password, invalid new password, invalid retype password, false) , (test case, false)}
+//3. testChangePassword{(valid current password, valid new password, invalid retype password) , (test case, false)}
+//4. testChangePassword{(valid current password, invalid new password, valid retype password) , (test case, false)}
+//5. testChangePassword{(valid current password, valid new password, valid retype password, true) , (test case, true)}
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+	// Fail the test
+	throw err
+	// Return false to prevent the error from failing the test in an unexpected way
+	return false
+})
+
+const currentPasswordContainer =
+	'.inputs_textContainer__ksnHm:nth-child(1) > input'
+const newPasswordContainer = '.inputs_textContainer__ksnHm:nth-child(2) > input'
+const retypePasswordContainer =
+	'.inputs_textContainer__ksnHm:nth-child(3) > input'
+const changePasswordButton =
+	'.change-password_actionContainer__wxvfo > .TT__standard-button'
+
+var currentPasswordPlaceholder = 'Current Password'
+var newPasswordPlaceholder = 'New Password'
+var retypePasswordPlaceholder = 'Retype Password'
+var changePasswordButtonText = 'Change password'
+
+Cypress.Commands.add(
+	'Change_Password_Details',
+	(currentPassword, newPassword, retypePassword) => {
+		cy.get(currentPasswordContainer)
+			.invoke('attr', 'placeholder')
+			.should('eq', currentPasswordPlaceholder)
+		cy.get(currentPasswordContainer).click()
+		cy.get(currentPasswordContainer).type(currentPassword)
+		cy.get(currentPasswordContainer)
+			.invoke('val')
+			.should('eq', currentPassword)
+			.and('have.length.gte', 8)
+			.and('have.length.lte', 30)
+
+		cy.get(newPasswordContainer)
+			.invoke('attr', 'placeholder')
+			.should('eq', newPasswordPlaceholder)
+		cy.get(newPasswordContainer).click()
+		cy.get(newPasswordContainer).type(newPassword)
+		cy.get(newPasswordContainer)
+			.invoke('val')
+			.should('eq', newPassword)
+			.and('have.length.gte', 8)
+			.and('have.length.lte', 30)
+
+		cy.get(retypePasswordContainer)
+			.invoke('attr', 'placeholder')
+			.should('eq', retypePasswordPlaceholder)
+		cy.get(retypePasswordContainer).click()
+		cy.get(retypePasswordContainer).type(retypePassword)
+		cy.get(retypePasswordContainer)
+			.invoke('val')
+			.should('eq', retypePassword)
+			.and('have.length.gte', 8)
+			.and('have.length.lte', 30)
+
+		cy.get(changePasswordButton).should('have.text', changePasswordButtonText)
+		cy.get(changePasswordButton).click()
+
+        cy.get(myAccountLabel).should('have.text', myAccountText)
+	}
+)
+
+//Login detail
+var validUsername = 'mikodemo1002'
+var validPassword = 'Yes888888'
+
+//Current Password
+var currentPassword1 = 'Yes888888'
+var currentPassword2 = 'Apple@678'
+
+//New Password
+var newPassword1 = "Apple@678"
+var newPassword2 = "Yes888888"
+
+//Invalid Password 5 < x < 20
+var invalidCurrentPassword = "miko@5566"
+var invalidRetypePassword = "miko@5566"
+var minInvalidPassword = "abc12"
+var maxInvalidPassword = '1111122222333334444455'
+
+
 beforeEach(() => {
 	cy.visit('https://www.jufsolution3.com/auth/signin?redirect=/')
+	cy.Test_Login_Account(validUsername, validPassword)
+	cy.Profile_Username(validUsername)
+	cy.Click_Profile_Username()
+	cy.Click_3Dot_Indicator()
+	cy.Click_ChangePassword_In_3Dot()
+	cy.ChangePassword_Page_Label()
 })
 
-function getUsernameAndPassword(usernameKey, passwordKey) {
-	return new Promise(resolve => {
-		cy.fixture('shortcut.json').then(uf => {
-			resolve({
-				username: uf[usernameKey],
-				password: uf[passwordKey],
-			})
-		})
-	})
-}
-
-function getNewPassword(currentPassword, newPassword, wrongPass) {
-	return new Promise(resolve => {
-		cy.fixture('shortcut.json').then(uf => {
-			resolve({
-				currentPass: uf[currentPassword],
-				newPass: uf[newPassword],
-                wrgPass: uf[wrongPass],
-			})
-		})
-	})
-}
-
-it.skip('Player change password successfully from Frontend .skip()', async () => {
-	const validata = await getUsernameAndPassword(
-		'validUsername',
-		'validPassword'
-	)
-
-	const { username, password } = validata
-
-    const passwordData1 = await getNewPassword(
-        'currentPassword1',
-        'newPassword3',
-        'wrongPassword1'
-    )
-
-    const {currentPass, newPass, wrgPass} = passwordData1
-
-	cy.get('.inputs_textContainer__ksnHm > input').as('username')
-	cy.get('@username').click()
-	cy.get('@username').type(username).should('have.value', username)
-
-	cy.get('.inputs_inputContainer__YQKEw > input').as('password')
-	cy.get('@password').click()
-	cy.get('@password').type(password).should('have.value', password)
-
-	cy.get('form > .TT__standard-button').as('loginButton')
-	cy.get('@loginButton').click()
-	cy.get(
-		':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_user__FkeJ_ > :nth-child(2) > .user-quick-view_playerMainContent__rDEHg > :nth-child(1)'
-	).as('profileUsername')
-	cy.get('@profileUsername').should('have.text', username)
-
-	//Login successfully
-
-	cy.get('@profileUsername').click()
-	cy.get('.account_title__CRo87').as('myAcc')
-	cy.get('@myAcc').should('have.text', 'My Account')
-
-	//3 dot indicator
-	cy.get('.account_userMenuButtonContainer__Wa1hN').as('3dot')
-	cy.get('@3dot').click('center')
-
-	//3 dot indicator > Change password page
-	cy.get('.account_list__2XnZl > [href="/account/change-password"]').as(
-		'changePass'
-	)
-	cy.get('@changePass').should('have.text', 'Change password')
-	cy.get('@changePass').click()
-	cy.get('.main_title__6Mbhv').should('have.text', 'Change Password')
-
-    cy.get('.inputs_textContainer__ksnHm:nth-child(1) > input').as('currentPassword')
-    cy.get('@currentPassword').invoke('attr', 'placeholder').should('eq', 'Current Password');
-    cy.get('@currentPassword').click()
-    cy.get('@currentPassword').type(currentPass)
-	cy.get('@currentPassword').invoke('val').should('eq', currentPass).and('have.length.gte', 8).and('have.length.lte', 30)
-
-	cy.get('.inputs_textContainer__ksnHm:nth-child(2) > input').as('newPass')
-	cy.get('@newPass').invoke('attr', 'placeholder').should('eq', 'New Password')
-	cy.get('@newPass').click()
-	cy.get('@newPass').type(newPass)
-	cy.get('@newPass').invoke('val').should('eq', newPass).and('have.length.gte', 8).and('have.length.lte', 30)
-
-	cy.get('.inputs_textContainer__ksnHm:nth-child(3) > input').as('retypePass')
-	cy.get('@retypePass').invoke('attr', 'placeholder').should('eq', 'Retype Password')
-	cy.get('@retypePass').click()
-	cy.get('@retypePass').type(newPass)
-	cy.get('@retypePass').invoke('val').should('eq', newPass).and('have.length.gte', 8).and('have.length.lte', 30)
-
-	cy.get('.change-password_actionContainer__wxvfo > .TT__standard-button').as('changePassBTN')
-	cy.get('@changePassBTN').should('have.text', 'Change password')
-	cy.get('@changePassBTN').click()
+//testChangePassword{(invalid current password, valid new password, valid retype password, false) , (test case, false)}
+it('Verify change password unsuccessful with invalid current password, valid new & retype password', () => {
+	cy.Change_Password_Details(invalidCurrentPassword, newPassword2, newPassword2)
 })
 
-it('Player failed to change password from frontend because using invalid password',async()=>{
-	const validata = await getUsernameAndPassword(
-		'validUsername',
-		'validPassword'
-	)
+//testChangePassword{(valid current password, invalid new password, invalid retype password, false) , (test case, false)}
+it('Verify change password unsuccessful with valid current password, invalid new & retype password', ()=>{
+	cy.Change_Password_Details(currentPassword1, minInvalidPassword, minInvalidPassword)
+})
 
-	const { username, password } = validata
-
-	const passwordData1 = await getNewPassword(
-        'currentPassword1',
-        'newPassword3',
-        'wrongPassword1'
-    )
-
-    const {currentPass, newPass, wrgPass} = passwordData1
-
-	cy.get('.inputs_textContainer__ksnHm > input').as('username')
-	cy.get('@username').click()
-	cy.get('@username').type(username).should('have.value', username)
-
-	cy.get('.inputs_inputContainer__YQKEw > input').as('password')
-	cy.get('@password').click()
-	cy.get('@password').type(password).should('have.value', password)
-
-	cy.get('form > .TT__standard-button').as('loginButton')
-	cy.get('@loginButton').click()
-	cy.get(
-		':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_user__FkeJ_ > :nth-child(2) > .user-quick-view_playerMainContent__rDEHg > :nth-child(1)'
-	).as('profileUsername')
-	cy.get('@profileUsername').should('have.text', username)
-
-	//Login successfully
-
-	cy.get('@profileUsername').click()
-	cy.get('.account_title__CRo87').as('myAcc')
-	cy.get('@myAcc').should('have.text', 'My Account')
-
-	//3 dot indicator
-	cy.get('.account_userMenuButtonContainer__Wa1hN').as('3dot')
-	cy.get('@3dot').click('center')
-
-	//3 dot indicator > Change password page
-	cy.get('.account_list__2XnZl > [href="/account/change-password"]').as(
-		'changePass'
-	)
-	cy.get('@changePass').should('have.text', 'Change password')
-	cy.get('@changePass').click()
-	cy.get('.main_title__6Mbhv').should('have.text', 'Change Password')
-
-	cy.get('.inputs_textContainer__ksnHm:nth-child(1) > input').as('currentPassword')
-    cy.get('@currentPassword').invoke('attr', 'placeholder').should('eq', 'Current Password');
-    cy.get('@currentPassword').click()
-    cy.get('@currentPassword').type(currentPass)
-	cy.get('@currentPassword').invoke('val').should('eq', currentPass).and('have.length.gte', 8).and('have.length.lte', 30)
-
-	cy.get('.inputs_textContainer__ksnHm:nth-child(2) > input').as('newPass')
-	cy.get('@newPass').invoke('attr', 'placeholder').should('eq', 'New Password')
-	cy.get('@newPass').click()
-	cy.get('@newPass').type(wrgPass)
-	// cy.get('@newPass').invoke('val').should('eq', wrgPass).and('have.length.gte', 8).and('have.length.lte', 30)
-
-	cy.get('.inputs_textContainer__ksnHm:nth-child(3) > input').as('retypePass')
-	cy.get('@retypePass').invoke('attr', 'placeholder').should('eq', 'Retype Password')
-	cy.get('@retypePass').click()
-	cy.get('@retypePass').type(wrgPass)
-	cy.get('@retypePass').invoke('val').should('eq', wrgPass).and('have.length.gte', 8).and('have.length.lte', 30)
-
-	cy.get('.change-password_actionContainer__wxvfo > .TT__standard-button').as('changePassBTN')
-	cy.get('@changePassBTN').should('have.text', 'Change password')
-	cy.get('@changePassBTN').click()
+//testChangePassword{(valid current password, valid new password, invalid retype password) , (test case, false)}
+it('Verify change password unsuccessful with valid current & new password, invalid retype password', ()=>{
+	cy.Change_Password_Details(currentPassword1, newPassword2, invalidRetypePassword)
 })
