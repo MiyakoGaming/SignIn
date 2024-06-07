@@ -55,14 +55,14 @@ Cypress.Commands.add('Transfer_Page_Label', () => {
 })
 
 //Manage Bank Page Label
-const manageBankPageLabel = 'content_sectionTitle__9Umi5'
+const manageBankPageLabel = '.content_sectionTitle__9Umi5'
 var manageBankPageLabelText = 'My bank accounts'
 Cypress.Commands.add('ManageBank_Page_Label', () => {
-	cy.get(manageBankPageLabell).should('have.text', manageBankPageLabelText)
+	cy.get(manageBankPageLabel).should('have.text', manageBankPageLabelText)
 })
 
 //Referral Page Label
-const referralPageLabel = 'referral_sectionTitle__hPCjM'
+const referralPageLabel = '.referral_sectionTitle__hPCjM'
 var referralPageLabelText = 'Referral'
 Cypress.Commands.add('Referral_Page_Label', () => {
 	cy.get(referralPageLabel).should('have.text', referralPageLabelText)

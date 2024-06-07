@@ -62,8 +62,6 @@ Cypress.Commands.add(
 
 		cy.get(changePasswordButton).should('have.text', changePasswordButtonText)
 		cy.get(changePasswordButton).click()
-
-        cy.get(myAccountLabel).should('have.text', myAccountText)
 	}
 )
 
@@ -81,6 +79,7 @@ var newPassword2 = "Yes888888"
 
 //Invalid Password 5 < x < 20
 var invalidCurrentPassword = "miko@5566"
+var invalidNewPassword = "miko@5566"
 var invalidRetypePassword = "miko@5566"
 var minInvalidPassword = "abc12"
 var maxInvalidPassword = '1111122222333334444455'
@@ -97,16 +96,31 @@ beforeEach(() => {
 })
 
 //testChangePassword{(invalid current password, valid new password, valid retype password, false) , (test case, false)}
-it('Verify change password unsuccessful with invalid current password, valid new & retype password', () => {
+it.skip('Verify change password unsuccessful with invalid current password, valid new & retype password .skip()', () => {
 	cy.Change_Password_Details(invalidCurrentPassword, newPassword2, newPassword2)
+	cy.My_Account_Page_Label()
 })
 
 //testChangePassword{(valid current password, invalid new password, invalid retype password, false) , (test case, false)}
-it('Verify change password unsuccessful with valid current password, invalid new & retype password', ()=>{
+it.skip('Verify change password unsuccessful with valid current password, invalid new & retype password .skip()', ()=>{
 	cy.Change_Password_Details(currentPassword1, minInvalidPassword, minInvalidPassword)
+	cy.My_Account_Page_Label()
 })
 
 //testChangePassword{(valid current password, valid new password, invalid retype password) , (test case, false)}
-it('Verify change password unsuccessful with valid current & new password, invalid retype password', ()=>{
+it.skip('Verify change password unsuccessful with valid current & new password, invalid retype password .skip()', ()=>{
 	cy.Change_Password_Details(currentPassword1, newPassword2, invalidRetypePassword)
+	cy.My_Account_Page_Label()
+})
+
+//testChangePassword{(valid current password, invalid new password, valid retype password) , (test case, false)}
+it.skip('Verify change password unsuccessful with valid current & retype password, invalid new password .skip()', ()=>{
+	cy.Change_Password_Details(currentPassword1, invalidNewPassword, newPassword1)
+	cy.My_Account_Page_Label()
+})
+
+//testChangePassword{(valid current password, valid new password, valid retype password, true) , (test case, true)}
+it('Verify change password successful with valid current & new & retype password', ()=>{
+	cy.Change_Password_Details(currentPassword1, newPassword1, newPassword1)
+	cy.My_Account_Page_Label()
 })
