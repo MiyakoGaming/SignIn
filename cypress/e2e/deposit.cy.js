@@ -1,3 +1,10 @@
+//1. testDeposit{(invalid amount, invalid transaction ID, false) , (test case, true)}
+//2. testDeposit{(invalid amount, invalid transaction ID, false) , (test case, false)}
+//3. testDeposit{(valid amount, invalid transaction ID, false) , (test case, false)}
+//4. testDeposit{(invalid amount, valid transaction ID, false) , (test case, false)}
+//5. testDeposit{(valid amount, valid transaction ID, true) , (test case, false)}
+//6. testDeposit{(valid amount, valid transaction ID, true) , (test case, true)}
+
 Cypress.on('uncaught:exception', (err, runnable) => {
 	// Fail the test
 	throw err
@@ -5,6 +12,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 	return false
 })
 
+//Test Submit Deposit
 const depositSelectionLabel =
 	':nth-child(1) > .inputs_selectContainer__O9Ic_ > label'
 const depositSelectionDropdown = '.inputs_selectContainer__O9Ic_ > select'
@@ -13,15 +21,8 @@ const depositAmountContainer =
 const depositTransactionID =
 	'.bank-transfer_transactionId__ziAat > .inputs_textContainer__ksnHm > input'
 const depositSubmitButton = '#TT__deposit-submit-banktransfer'
-const depositMessagePopUp = '.modal_hero__P0JkX > .modal_title__2_dt7'
-const closeDepositErrorPopUp = '.modal_action__0o7AY > .TT__standard-button'
-
 var signInButtonText = 'Sign In'
 var depositSubmitText = 'Submit Deposit'
-var depositSuccessPopUpText = 'Deposit submitted'
-var depositErrorPopUpText = 'Deposit Unsuccessful'
-var closeDepositErrorPopUpText = 'Okay'
-
 Cypress.Commands.add('Test_Submit_Deposit', (bank, amount, transactionID) => {
 	cy.get(depositSelectionLabel).should('have.text', 'Deposit to Bank')
 	cy.get(depositSelectionDropdown).select(bank).should('have.value', bank)
@@ -36,7 +37,13 @@ Cypress.Commands.add('Test_Submit_Deposit', (bank, amount, transactionID) => {
 	cy.get(depositSubmitButton).click()
 })
 
-Cypress.Commands.add('Deposit_success_message', ()=>{
+//Deposit Success & Error message Pop Up
+const depositMessagePopUp = '.modal_hero__P0JkX > .modal_title__2_dt7'
+const closeDepositErrorPopUp = '.modal_action__0o7AY > .TT__standard-button'
+var depositSuccessPopUpText = 'Deposit submitted'
+var depositErrorPopUpText = 'Deposit Unsuccessful'
+var closeDepositErrorPopUpText = 'Okay'
+Cypress.Commands.add('Deposit_success_message', () => {
 	cy.get(depositMessagePopUp).should('have.text', depositSuccessPopUpText)
 })
 

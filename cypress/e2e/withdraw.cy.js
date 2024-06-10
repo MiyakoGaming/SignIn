@@ -1,178 +1,163 @@
+//1. testWithdraw{(invalid amount, uncheck bank, false) , (test case, false)}
+//2. testWithdraw{(invalid amount, uncheck bank, false) , (test case, true)}
+//3. testWithdraw{(invalid amount, check bank, false) , (test case, false)}
+//4. testWithdraw{(invalid amount, check bank, false) , (test case, true)}
+//5. testWithdraw{(valid amount, uncheck bank, false) , (test case, false)}
+//6. testWithdraw{(valid amount, uncheck bank, false) , (test case, true)}
+//7. testWithdraw{(valid amount, check bank, true) , (test case, false)}
+//8. testWithdraw{(valid amount, check bank, true, cancel) , (test case, true)}
+//9. testWithdraw{(valid amount, check bank, true, confirm) , (test case, true)}
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+	// Fail the test
+	throw err
+	// Return false to prevent the error from failing the test in an unexpected way
+	return false
+})
+
+//Test Submit Withdraw
+const withdrawAmountContainer = '.amount-input_amount__MY83h > input'
+const withdrawSubmitButton = '.withdraw_submit__Ga6iu > .TT__standard-button'
+var withdrawSubmitButtonText = 'Submit'
+
+Cypress.Commands.add('Insert_Withdraw_Amount', withdrawAmount => {
+	cy.get(withdrawAmountContainer).click()
+	cy.get(withdrawAmountContainer).clear()
+	cy.get(withdrawAmountContainer).type(withdrawAmount)
+})
+
+Cypress.Commands.add('Select_Withdraw_Bank_Checkbox', checkboxBank => {
+	cy.get(checkboxBank).check()
+})
+
+Cypress.Commands.add('Click_Withdraw_Submit_Button', () => {
+	cy.get(withdrawSubmitButton).should('have.text', withdrawSubmitButtonText)
+	cy.get(withdrawSubmitButton).click()
+})
+
+//Confirm and Cancel Submit Withdraw Pop Up
+const withdrawConfimationPopUp = '.react-confirm-alert'
+const cancelSubmitWithdraw = '.buttons_link__UIxx_'
+const confirmSubmitWithdraw = '.react-confirm-alert-button__success'
+var cancelSubmitWithdrawText = 'Cancel'
+var confirmSubmitWithdrawText = 'Withdraw'
+Cypress.Commands.add('Cancel_Submit_Withdraw', () => {
+	cy.get(withdrawConfimationPopUp)
+	cy.get(cancelSubmitWithdraw).should('have.text', cancelSubmitWithdrawText)
+	cy.get(cancelSubmitWithdraw).click()
+})
+
+Cypress.Commands.add('Confirm_Submit_Withdraw', () => {
+	cy.get(withdrawConfimationPopUp)
+	cy.get(confirmSubmitWithdraw).should('have.text', confirmSubmitWithdrawText)
+	cy.get(confirmSubmitWithdraw).click()
+})
+
+//Withdraw & Uncheck Bank Error Message Pop Up
+const withdrawErrorPopUp = '.modal_hero__P0JkX'
+const uncheckBankErrorPopUp = '.modal_message__hHpBD'
+const closeWithdrawErrorPopUpButton = '.modal_action__0o7AY > .TT__standard-button'
+var withdrawErrorPopUpText = 'Error occurred!'
+var uncheckBankErrorPopUpText = "Please select a bank."
+var closeWithdrawErrorPopUpButtonText = 'Okay'
+
+Cypress.Commands.add('Withdraw_Error_Message_Pop_Up', ()=>{
+	cy.get(withdrawErrorPopUp).should('have.text', withdrawErrorPopUpText)
+	cy.get(closeWithdrawErrorPopUpButton).should('have.text', closeWithdrawErrorPopUpButtonText)
+	cy.get(closeWithdrawErrorPopUpButton).click()
+})
+
+Cypress.Commands.add('Withdraw_Uncheck_Bank_Error_Message_Pop_Up', ()=>{
+	cy.get(uncheckBankErrorPopUp).should('have.text', uncheckBankErrorPopUpText)
+	cy.get(closeWithdrawErrorPopUpButton).should('have.text', closeWithdrawErrorPopUpButtonText)
+	cy.get(closeWithdrawErrorPopUpButton).click()
+})
+
+//Login detail
+var validUsername = 'mikodemo1002'
+var validPassword = 'Yes888888'
+
+//Withdraw amount (10 < x < main wallet amount)
+var invalidMinAmount = '500' //MYR 5
+var invalidMaxAmount = '8000000' //MYR 80,000
+var validAmount = '6000' //MYR 60
+
+//Withdraw Bank Checkbox
+const checkboxBank1 = '#bank__396'
+const checkboxBank2 = '#bank__399'
+
 beforeEach(() => {
 	cy.visit('https://www.jufsolution3.com/auth/signin?redirect=/')
+	cy.Test_Login_Account(validUsername, validPassword)
+	cy.Profile_Username(validUsername)
+	cy.Navigation_Homepage_To_Withdraw()
+	cy.Withdraw_Page_Label()
 })
 
-function getUsernameAndPassword(usernameKey, passwordKey) {
-	return new Promise(resolve => {
-		cy.fixture('shortcut.json').then(uf => {
-			resolve({
-				username: uf[usernameKey],
-				password: uf[passwordKey],
-			})
-		})
-	})
-}
-
-function getWithdrawAccNo(invalidAccNo, validAccNo) {
-	return new Promise(resolve => {
-		cy.fixture('shortcut.json').then(uf => {
-			resolve({
-				invalidAccNo: uf[invalidAccNo],
-				validAccNo: uf[validAccNo],
-			})
-		})
-	})
-}
-
-it.skip('Player manage bank and submit withdraw successfully .skip()', async () => {
-	const validata = await getUsernameAndPassword(
-		'validUsername',
-		'validPassword'
-	)
-
-	const { username, password } = validata
-
-	const withdrawAccNo = await getWithdrawAccNo('invalidAccNo2', 'validAccNo2')
-
-	const { invalidAccNo, validAccNo } = withdrawAccNo
-
-	cy.get('.inputs_textContainer__ksnHm > input').as('username')
-	cy.get('@username').click()
-	cy.get('@username').type(username).should('have.value', username)
-
-	cy.get('.inputs_inputContainer__YQKEw > input').as('password')
-	cy.get('@password').click()
-	cy.get('@password').type(password).should('have.value', password)
-
-	cy.get('form > .TT__standard-button').as('loginButton')
-	cy.get('@loginButton').click()
-	cy.get(
-		':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_user__FkeJ_ > :nth-child(2) > .user-quick-view_playerMainContent__rDEHg > :nth-child(1)'
-	).as('profileUsername')
-	cy.get('@profileUsername').should('have.text', username)
-
-	// *****Successfully login******
-
-	cy.get(
-		'.index_announcementActions__nhC_d > .user-quick-actions_shortcuts__RVJkw > :nth-child(3)'
-	).as('withdrawBTN')
-	cy.get('@withdrawBTN').should('have.text', 'Withdraw')
-	cy.get('@withdrawBTN').click()
-	cy.get('.withdraw_bankSelector__lCczo > :nth-child(1)').should(
-		'have.text',
-		'Transfer to:'
-	)
-
-	//Click "Add new bank / manage your banks"
-	cy.get('.withdraw_manage__CQGbD').as('manageBank')
-	cy.get('@manageBank').click('center')
-
-	//Add new banks
-	cy.get('.banks_newBank__Ul2Bc').as('linkBank')
-	cy.get('@linkBank').should('have.text', 'Link a bank')
-	cy.get('@linkBank').click('center')
-	cy.get('.main_title__6Mbhv').should('have.text', 'Link a bank account')
-
-	//Link a bank account page
-	cy.get('.inputs_selectContainer__O9Ic_ > select')
-		.select('SADB')
-		.should('have.value', 'SADB')
-
-	cy.get('form > :nth-child(1) > input').as('withdrawAccNo')
-	cy.get('@withdrawAccNo')
-		.invoke('attr', 'placeholder')
-		.should('eq', '1234567890')
-	cy.get('@withdrawAccNo').click()
-	cy.get('@withdrawAccNo').type(validAccNo)
-	cy.get('@withdrawAccNo')
-		.invoke('val')
-		.should('eq', validAccNo)
-		.and('have.length.gte', 4)
-		.and('have.length.lte', 20)
-
-	cy.get('.bank-inputs_actionContainer__OTY__ > .TT__standard-button').as(
-		'withdrawSubBTN'
-	)
-	cy.get('@withdrawSubBTN').should('have.text', 'Link bank account')
-	cy.get('@withdrawSubBTN').click()
-
-	//Side navigation menu > Deposit > Withdraw
-	cy.get('.account-info_sideNavBar__Zeolo > :nth-child(4) > a').as('witNav')
-	cy.get('@witNav').should('have.text', 'Withdraw')
-	cy.get('@witNav').click()
-
-	cy.get('.amount-input_amount__MY83h > input').as('withdrawInput')
-	cy.get('@withdrawInput').click()
-	cy.get('@withdrawInput').clear()
-	cy.get('@withdrawInput').type('100')
-
-	// select bank
-	cy.get('#bank__396').as('selectBank')
-	cy.get('@selectBank').check()
-
-	cy.get('.withdraw_submit__Ga6iu > .TT__standard-button').as('withdrawBTN')
-	cy.get('@withdrawBTN').should('have.text', 'Submit')
-	cy.get('@withdrawBTN').click()
-
-
+//testWithdraw{(invalid amount, uncheck bank, false) , (test case, false)}
+it('Withdraw unsuccessfully with invalid amount & uncheck bank', ()=>{
+	cy.Insert_Withdraw_Amount(invalidMinAmount)
+	cy.Click_Withdraw_Submit_Button()
+	cy.Cancel_Submit_Withdraw()
 })
 
-it('Player submit withdraw successfully ', async()=>{
-	const validata = await getUsernameAndPassword(
-		'validUsername',
-		'validPassword'
-	)
+//testWithdraw{(invalid amount, uncheck bank, false) , (test case, true)}
+it('Withdraw unsuccessfully with invalid amount & uncheck bank', ()=>{
+	cy.Insert_Withdraw_Amount(invalidMinAmount)
+	cy.Click_Withdraw_Submit_Button()
+	cy.Withdraw_Error_Message_Pop_Up()
+})
 
-	const { username, password } = validata
+//testWithdraw{(invalid amount, check bank, false) , (test case, false)}
+it('Withdraw unsuccessfully with invalid amount & check bank', ()=>{
+	cy.Insert_Withdraw_Amount(invalidMinAmount)
+	cy.Select_Withdraw_Bank_Checkbox(checkboxBank1)
+	cy.Click_Withdraw_Submit_Button()
+	cy.Cancel_Submit_Withdraw()
+})
 
-	cy.get('.inputs_textContainer__ksnHm > input').as('username')
-	cy.get('@username').click()
-	cy.get('@username').type(username).should('have.value', username)
+//testWithdraw{(invalid amount, check bank, false) , (test case, true)}
+it('Withdraw unsuccessfully with invalid amount & check bank', ()=>{
+	cy.Insert_Withdraw_Amount(invalidMinAmount)
+	cy.Select_Withdraw_Bank_Checkbox(checkboxBank1)
+	cy.Click_Withdraw_Submit_Button()
+	cy.Withdraw_Error_Message_Pop_Up()
+})
 
-	cy.get('.inputs_inputContainer__YQKEw > input').as('password')
-	cy.get('@password').click()
-	cy.get('@password').type(password).should('have.value', password)
+//testWithdraw{(valid amount, uncheck bank, false) , (test case, false)}
+it('Withdraw unsuccessfully with valid amount & uncheck bank', ()=>{
+	cy.Insert_Withdraw_Amount(validAmount)
+	cy.Click_Withdraw_Submit_Button()
+	cy.Cancel_Submit_Withdraw()
+})
 
-	cy.get('form > .TT__standard-button').as('loginButton')
-	cy.get('@loginButton').click()
-	cy.get(
-		':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_user__FkeJ_ > :nth-child(2) > .user-quick-view_playerMainContent__rDEHg > :nth-child(1)'
-	).as('profileUsername')
-	cy.get('@profileUsername').should('have.text', username)
+//testWithdraw{(valid amount, uncheck bank, false) , (test case, true)}
+it('Withdraw unsuccessfully with valid amount & uncheck bank', ()=>{
+	cy.Insert_Withdraw_Amount(validAmount)
+	cy.Click_Withdraw_Submit_Button()
+	cy.Withdraw_Uncheck_Bank_Error_Message_Pop_Up()
+})
 
-	// *****Successfully login******
+//testWithdraw{(valid amount, check bank, true) , (test case, false)}
+it('Withdraw unsuccessfully with valid amount & check bank' , ()=>{
+	cy.Insert_Withdraw_Amount(validAmount)
+	cy.Select_Withdraw_Bank_Checkbox(checkboxBank1)
+	cy.Click_Withdraw_Submit_Button()
+	cy.Withdraw_Error_Message_Pop_Up()
+})
 
-	cy.get(
-		'.index_announcementActions__nhC_d > .user-quick-actions_shortcuts__RVJkw > :nth-child(3)'
-	).as('withdrawBTN')
-	cy.get('@withdrawBTN').should('have.text', 'Withdraw')
-	cy.get('@withdrawBTN').click()
+//testWithdraw{(valid amount, check bank, true, cancel) , (test case, true)}
+it('Withdraw unsuccessfully with valid amount & check bank' , ()=>{
+	cy.Insert_Withdraw_Amount(validAmount)
+	cy.Select_Withdraw_Bank_Checkbox(checkboxBank1)
+	cy.Click_Withdraw_Submit_Button()
+	cy.Cancel_Submit_Withdraw()
+})
 
-	cy.get('.amount-input_amount__MY83h > input').as('withdrawInput')
-	cy.get('@withdrawInput').click()
-	cy.get('@withdrawInput').clear()
-	cy.get('@withdrawInput').type('100')
-
-	// select bank
-	cy.get('#bank__396').as('selectBank')
-	cy.get('@selectBank').check()
-
-	cy.get('.withdraw_submit__Ga6iu > .TT__standard-button').as('withdrawBTN')
-	cy.get('@withdrawBTN').should('have.text', 'Submit')
-
-	//Click Cancelbutton
-	cy.get('@withdrawBTN').click()
-	cy.get('.react-confirm-alert')
-	cy.get('.buttons_link__UIxx_').as("withdarwCancel")
-	cy.get('@withdarwCancel').should('have.text', 'Cancel')
-	cy.get('@withdarwCancel').click()
-	
-
-
-	//Click Withdraw button
-	// cy.get('@withdrawBTN').click()
-	// cy.get('.react-confirm-alert')
-	// cy.get('.react-confirm-alert-button__success').as("withdrawButton")
-	// cy.get('@withdrawButton').should('have.text', 'Withdraw')
-	// // cy.get('@withdrawButton').click()
+//testWithdraw{(valid amount, check bank, true, confirm) , (test case, true)}
+it('Withdraw unsuccessfully with valid amount & check bank' , ()=>{
+	cy.Insert_Withdraw_Amount(validAmount)
+	cy.Select_Withdraw_Bank_Checkbox(checkboxBank1)
+	cy.Click_Withdraw_Submit_Button()
+	cy.Confirm_Submit_Withdraw()
 })

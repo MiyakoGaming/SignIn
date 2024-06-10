@@ -22,7 +22,7 @@ Cypress.Commands.add('Profile_Username', profile_Username => {
 })
 
 //Click Profile Username to My account Page
-Cypress.Commands.add('Click_Profile_Username', profile_Username => {
+Cypress.Commands.add('Click_Profile_Username', () => {
 	cy.get(profileUsername).click()
 })
 
@@ -59,6 +59,16 @@ const manageBankPageLabel = '.content_sectionTitle__9Umi5'
 var manageBankPageLabelText = 'My bank accounts'
 Cypress.Commands.add('ManageBank_Page_Label', () => {
 	cy.get(manageBankPageLabel).should('have.text', manageBankPageLabelText)
+})
+
+//Link a Bank Account Page Label
+const linkBankAccountPageLabel = '.main_title__6Mbhv'
+var linkBankAccountPageLabelText = 'Link a bank account'
+Cypress.Commands.add('Link_Bank_Account_Page_Label', () => {
+	cy.get(linkBankAccountPageLabel).should(
+		'have.text',
+		linkBankAccountPageLabelText
+	)
 })
 
 //Referral Page Label
@@ -104,6 +114,12 @@ const sideMenuManageBankButton =
 	'.account-info_sideNavBar__Zeolo > :nth-child(8)'
 Cypress.Commands.add('Navigation_SideMenu_To_ManageBanks', () => {
 	cy.get(sideMenuManageBankButton).click()
+})
+
+//Click Manage banks on withdraw page
+const addNewBankLink = '.withdraw_manage__CQGbD > a'
+Cypress.Commands.add('Click_Add_New_banks_Link_To_ManageBanks', () => {
+	cy.get(addNewBankLink).click('center')
 })
 
 //Click change password tab in 3 dot indicator menu --> Change Password Page
