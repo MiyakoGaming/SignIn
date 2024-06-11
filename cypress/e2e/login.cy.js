@@ -12,22 +12,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 	return false
 })
 
-const signInErrorPopUp = '.modal_hero__P0JkX'
-const closeSignInErrorPopUp = '.modal_action__0o7AY > .TT__standard-button'
-
-var signInErrorPopUpText = 'Unable to log in.'
-var closeSignInErrorPopUpText = 'Okay'
-
-Cypress.Commands.add('Sign_In_Error_message', () => {
-	cy.get(signInErrorPopUp).should('be.visible')
-	cy.get(signInErrorPopUp).should('have.text', signInErrorPopUpText)
-
-	cy.get(closeSignInErrorPopUp)
-		.should('be.visible')
-		.and('have.text', closeSignInErrorPopUpText)
-	cy.get(closeSignInErrorPopUp).click()
-})
-
 //Login detail
 var validUsername = 'mikodemo1002'
 var validPassword = 'Yes888888'

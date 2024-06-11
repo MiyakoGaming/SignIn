@@ -15,64 +15,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 	return false
 })
 
-//Test Submit Withdraw
-const withdrawAmountContainer = '.amount-input_amount__MY83h > input'
-const withdrawSubmitButton = '.withdraw_submit__Ga6iu > .TT__standard-button'
-var withdrawSubmitButtonText = 'Submit'
-
-Cypress.Commands.add('Insert_Withdraw_Amount', withdrawAmount => {
-	cy.get(withdrawAmountContainer).click()
-	cy.get(withdrawAmountContainer).clear()
-	cy.get(withdrawAmountContainer).type(withdrawAmount)
-})
-
-Cypress.Commands.add('Select_Withdraw_Bank_Checkbox', checkboxBank => {
-	cy.get(checkboxBank).check()
-})
-
-Cypress.Commands.add('Click_Withdraw_Submit_Button', () => {
-	cy.get(withdrawSubmitButton).should('have.text', withdrawSubmitButtonText)
-	cy.get(withdrawSubmitButton).click()
-})
-
-//Confirm and Cancel Submit Withdraw Pop Up
-const withdrawConfimationPopUp = '.react-confirm-alert'
-const cancelSubmitWithdraw = '.buttons_link__UIxx_'
-const confirmSubmitWithdraw = '.react-confirm-alert-button__success'
-var cancelSubmitWithdrawText = 'Cancel'
-var confirmSubmitWithdrawText = 'Withdraw'
-Cypress.Commands.add('Cancel_Submit_Withdraw', () => {
-	cy.get(withdrawConfimationPopUp)
-	cy.get(cancelSubmitWithdraw).should('have.text', cancelSubmitWithdrawText)
-	cy.get(cancelSubmitWithdraw).click()
-})
-
-Cypress.Commands.add('Confirm_Submit_Withdraw', () => {
-	cy.get(withdrawConfimationPopUp)
-	cy.get(confirmSubmitWithdraw).should('have.text', confirmSubmitWithdrawText)
-	cy.get(confirmSubmitWithdraw).click()
-})
-
-//Withdraw & Uncheck Bank Error Message Pop Up
-const withdrawErrorPopUp = '.modal_hero__P0JkX'
-const uncheckBankErrorPopUp = '.modal_message__hHpBD'
-const closeWithdrawErrorPopUpButton = '.modal_action__0o7AY > .TT__standard-button'
-var withdrawErrorPopUpText = 'Error occurred!'
-var uncheckBankErrorPopUpText = "Please select a bank."
-var closeWithdrawErrorPopUpButtonText = 'Okay'
-
-Cypress.Commands.add('Withdraw_Error_Message_Pop_Up', ()=>{
-	cy.get(withdrawErrorPopUp).should('have.text', withdrawErrorPopUpText)
-	cy.get(closeWithdrawErrorPopUpButton).should('have.text', closeWithdrawErrorPopUpButtonText)
-	cy.get(closeWithdrawErrorPopUpButton).click()
-})
-
-Cypress.Commands.add('Withdraw_Uncheck_Bank_Error_Message_Pop_Up', ()=>{
-	cy.get(uncheckBankErrorPopUp).should('have.text', uncheckBankErrorPopUpText)
-	cy.get(closeWithdrawErrorPopUpButton).should('have.text', closeWithdrawErrorPopUpButtonText)
-	cy.get(closeWithdrawErrorPopUpButton).click()
-})
-
 //Login detail
 var validUsername = 'mikodemo1002'
 var validPassword = 'Yes888888'

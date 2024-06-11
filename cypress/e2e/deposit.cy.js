@@ -12,48 +12,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 	return false
 })
 
-//Test Submit Deposit
-const depositSelectionLabel =
-	':nth-child(1) > .inputs_selectContainer__O9Ic_ > label'
-const depositSelectionDropdown = '.inputs_selectContainer__O9Ic_ > select'
-const depositAmountContainer =
-	'.amount-input_inputContainer__jUvRT > .inputs_textContainer__ksnHm > input'
-const depositTransactionID =
-	'.bank-transfer_transactionId__ziAat > .inputs_textContainer__ksnHm > input'
-const depositSubmitButton = '#TT__deposit-submit-banktransfer'
-var signInButtonText = 'Sign In'
-var depositSubmitText = 'Submit Deposit'
-Cypress.Commands.add('Test_Submit_Deposit', (bank, amount, transactionID) => {
-	cy.get(depositSelectionLabel).should('have.text', 'Deposit to Bank')
-	cy.get(depositSelectionDropdown).select(bank).should('have.value', bank)
-
-	cy.get(depositAmountContainer).click()
-	cy.get(depositAmountContainer).type(amount)
-
-	cy.get(depositTransactionID).click()
-	cy.get(depositTransactionID).type(transactionID)
-
-	cy.get(depositSubmitButton).should('have.text', depositSubmitText)
-	cy.get(depositSubmitButton).click()
-})
-
-//Deposit Success & Error message Pop Up
-const depositMessagePopUp = '.modal_hero__P0JkX > .modal_title__2_dt7'
-const closeDepositErrorPopUp = '.modal_action__0o7AY > .TT__standard-button'
-var depositSuccessPopUpText = 'Deposit submitted'
-var depositErrorPopUpText = 'Deposit Unsuccessful'
-var closeDepositErrorPopUpText = 'Okay'
-Cypress.Commands.add('Deposit_success_message', () => {
-	cy.get(depositMessagePopUp).should('have.text', depositSuccessPopUpText)
-})
-
-Cypress.Commands.add('Deposit_Error_message', () => {
-	cy.get(depositMessagePopUp).should('have.text', depositErrorPopUpText)
-
-	cy.get(closeDepositErrorPopUp).should('have.text', closeDepositErrorPopUpText)
-	cy.get(closeDepositErrorPopUp).click()
-})
-
 //Login detail
 var validUsername = 'mikodemo1002'
 var validPassword = 'Yes888888'

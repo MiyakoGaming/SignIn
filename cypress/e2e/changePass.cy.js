@@ -11,60 +11,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 	return false
 })
 
-const currentPasswordContainer =
-	'.inputs_textContainer__ksnHm:nth-child(1) > input'
-const newPasswordContainer = '.inputs_textContainer__ksnHm:nth-child(2) > input'
-const retypePasswordContainer =
-	'.inputs_textContainer__ksnHm:nth-child(3) > input'
-const changePasswordButton =
-	'.change-password_actionContainer__wxvfo > .TT__standard-button'
-
-var currentPasswordPlaceholder = 'Current Password'
-var newPasswordPlaceholder = 'New Password'
-var retypePasswordPlaceholder = 'Retype Password'
-var changePasswordButtonText = 'Change password'
-
-Cypress.Commands.add(
-	'Change_Password_Details',
-	(currentPassword, newPassword, retypePassword) => {
-		cy.get(currentPasswordContainer)
-			.invoke('attr', 'placeholder')
-			.should('eq', currentPasswordPlaceholder)
-		cy.get(currentPasswordContainer).click()
-		cy.get(currentPasswordContainer).type(currentPassword)
-		cy.get(currentPasswordContainer)
-			.invoke('val')
-			.should('eq', currentPassword)
-			.and('have.length.gte', 8)
-			.and('have.length.lte', 30)
-
-		cy.get(newPasswordContainer)
-			.invoke('attr', 'placeholder')
-			.should('eq', newPasswordPlaceholder)
-		cy.get(newPasswordContainer).click()
-		cy.get(newPasswordContainer).type(newPassword)
-		cy.get(newPasswordContainer)
-			.invoke('val')
-			.should('eq', newPassword)
-			.and('have.length.gte', 8)
-			.and('have.length.lte', 30)
-
-		cy.get(retypePasswordContainer)
-			.invoke('attr', 'placeholder')
-			.should('eq', retypePasswordPlaceholder)
-		cy.get(retypePasswordContainer).click()
-		cy.get(retypePasswordContainer).type(retypePassword)
-		cy.get(retypePasswordContainer)
-			.invoke('val')
-			.should('eq', retypePassword)
-			.and('have.length.gte', 8)
-			.and('have.length.lte', 30)
-
-		cy.get(changePasswordButton).should('have.text', changePasswordButtonText)
-		cy.get(changePasswordButton).click()
-	}
-)
-
 //Login detail
 var validUsername = 'mikodemo1002'
 var validPassword = 'Yes888888'
