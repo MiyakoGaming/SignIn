@@ -442,19 +442,191 @@ Cypress.Commands.add('Confirm_Submit_Withdraw', () => {
 //Withdraw Page - Withdraw & Uncheck Bank Error Message Pop Up
 const withdrawErrorPopUp = '.modal_hero__P0JkX'
 const uncheckBankErrorPopUp = '.modal_message__hHpBD'
-const closeWithdrawErrorPopUpButton = '.modal_action__0o7AY > .TT__standard-button'
+const closeWithdrawErrorPopUpButton =
+	'.modal_action__0o7AY > .TT__standard-button'
 var withdrawErrorPopUpText = 'Error occurred!'
-var uncheckBankErrorPopUpText = "Please select a bank."
+var uncheckBankErrorPopUpText = 'Please select a bank.'
 var closeWithdrawErrorPopUpButtonText = 'Okay'
 
-Cypress.Commands.add('Withdraw_Error_Message_Pop_Up', ()=>{
+Cypress.Commands.add('Withdraw_Error_Message_Pop_Up', () => {
 	cy.get(withdrawErrorPopUp).should('have.text', withdrawErrorPopUpText)
-	cy.get(closeWithdrawErrorPopUpButton).should('have.text', closeWithdrawErrorPopUpButtonText)
+	cy.get(closeWithdrawErrorPopUpButton).should(
+		'have.text',
+		closeWithdrawErrorPopUpButtonText
+	)
 	cy.get(closeWithdrawErrorPopUpButton).click()
 })
 
-Cypress.Commands.add('Withdraw_Uncheck_Bank_Error_Message_Pop_Up', ()=>{
+Cypress.Commands.add('Withdraw_Uncheck_Bank_Error_Message_Pop_Up', () => {
 	cy.get(uncheckBankErrorPopUp).should('have.text', uncheckBankErrorPopUpText)
-	cy.get(closeWithdrawErrorPopUpButton).should('have.text', closeWithdrawErrorPopUpButtonText)
+	cy.get(closeWithdrawErrorPopUpButton).should(
+		'have.text',
+		closeWithdrawErrorPopUpButtonText
+	)
 	cy.get(closeWithdrawErrorPopUpButton).click()
+})
+
+//Game Category Menu Tab
+const liveCasinoCategory = '.games_menu__w051Z > :nth-child(1)'
+const sportsCategory = '.games_menu__w051Z > :nth-child(2)'
+const slotsCategory = '.games_menu__w051Z > :nth-child(3)'
+const fishingCategory = '.games_menu__w051Z > :nth-child(4)'
+const otherCategory = '.games_menu__w051Z > :nth-child(5)'
+var liveCasinoCategoryText = 'Live Casino'
+var sportsCategoryText = 'Sports'
+var slotsCategoryText = 'Slots'
+var fishingCategoryText = 'Fishing'
+var otherCategoryText = 'Other'
+
+Cypress.Commands.add('Live_Casino_Category_Tab', () => {
+	cy.get(liveCasinoCategory).should('have.text', liveCasinoCategoryText)
+	cy.get(liveCasinoCategory).click()
+})
+
+Cypress.Commands.add('Sports_Category_Tab', () => {
+	cy.get(sportsCategory).should('have.text', sportsCategoryText)
+	cy.get(sportsCategory).click()
+})
+
+Cypress.Commands.add('Slots_Category_Tab', () => {
+	cy.get(slotsCategory).should('have.text', slotsCategoryText)
+	cy.get(slotsCategory).click()
+})
+
+Cypress.Commands.add('Fishing_Category_Tab', () => {
+	cy.get(fishingCategory).should('have.text', fishingCategoryText)
+	cy.get(fishingCategory).click()
+})
+
+Cypress.Commands.add('Others_Category_Tab', () => {
+	cy.get(otherCategory).should('have.text', otherCategoryText)
+	cy.get(otherCategory).click()
+})
+
+//Games sequence in Game Category
+const gameSequence1 = ':nth-child(1) > .TT__game-provider-label'
+const gameSequence2 = ':nth-child(2) > .TT__game-provider-label'
+const gameSequence3 = ':nth-child(3) > .TT__game-provider-label'
+
+Cypress.Commands.add('Game_Sequence_1', () => {
+	cy.get(gameSequence1).click()
+})
+
+Cypress.Commands.add('Game_Sequence_2', () => {
+	cy.get(gameSequence2).click()
+})
+
+Cypress.Commands.add('Game_Sequence_3', () => {
+	cy.get(gameSequence3).click()
+})
+
+//Click "Skip and proceed to game" to launch game
+const skipProccesToGame = '.transfer-prompt_skip__wqRrm > .TT__standard-button'
+var skipProccesToGameText = 'Skip and proceed to game'
+
+Cypress.Commands.add('Skip_And_Proceed_To_Game', () => {
+	cy.get(skipProccesToGame).should('have.text', skipProccesToGameText)
+	cy.get(skipProccesToGame).click()
+})
+
+//Error message Pop Up when failed to launch game
+const maintenanceMessagePopUp = '.modal_message__hHpBD'
+const closeMaintenancePopUp = ''
+var maintenanceMessagePopUpText =
+	'Something went wrong while launching the game, please try again or contact support for assistance.'
+var closeMaintenancePopUpText = 'Okay'
+Cypress.Commands.add('Error_Message_When_Launch_Maintenance_Provider', () => {
+	cy.get(maintenanceMessagePopUp).should(
+		'have.text',
+		maintenanceMessagePopUpText
+	)
+	cy.get(closeMaintenancePopUp).should('have.text', closeMaintenancePopUpText)
+	cy.get(closeMaintenancePopUp).click()
+})
+
+//Open / close Transfer pop up - Homepage
+const openTransferPopUp = '.transfer-prompt_title__dXxW3'
+const closeTransferPopUp = '.transfer-prompt_close__mHVSm'
+var openTransferPopUpText = 'Transfer'
+
+Cypress.Commands.add('Open_Transfer_Pop_Up', () => {
+	cy.get(openTransferPopUp).should('have.text', openTransferPopUpText)
+})
+
+Cypress.Commands.add('Close_Transfer_Pop_Up', () => {
+	cy.get(closeTransferPopUp).click()
+})
+
+//Switch wallet between provider wallet and main wallet
+const fromSelectOption =
+	':nth-child(1) > .wallet-selection_walletSelector__qL7_c > select'
+const toSelectOption =
+	':nth-child(3) > .wallet-selection_walletSelector__qL7_c > select'
+
+Cypress.Commands.add(
+	'Switch_Wallet_Between_Provider_Wallet_And_Main_Wallet',
+	(selectWallet1, selectWallet2) => {
+		cy.get(fromSelectOption)
+			.select(selectWallet1)
+			.should('have.value', selectWallet1)
+		cy.get(toSelectOption)
+			.select(selectWallet2)
+			.should('have.value', selectWallet2)
+	}
+)
+
+//Insert transfer amount in transfer page after select wallet
+const transferAmountLabel = '.amount-inputs_transferAmountLabel___tK6N'
+const transferInsertAmount = '.amount-input_amount__MY83h > input'
+var transferAmountLabelText = 'Transfer amount'
+
+Cypress.Commands.add('Insert_Transfer_Amount_In_Transfer_Page',(transferAmount)=>{
+	cy.get(transferAmountLabel).should('have.text', transferAmountLabelText)
+	cy.get(transferInsertAmount).click
+	cy.get(transferInsertAmount).type(transferAmount)
+})
+
+//Click Transfer button in transfer page & transfer button disable when amount above main wallet / provider wallet
+const transferPageTransferButton = '.amount-inputs_actionSection__XeYV0 > .TT__standard-button'
+var transferPageTransferButtonText = 'Transfer'
+
+Cypress.Commands.add('Click_Transfer_Button_In_Transfer_Page', ()=>{
+	// cy.wait(6000)
+	cy.get(transferPageTransferButton).should('have.text', transferPageTransferButtonText)
+})
+
+Cypress.Commands.add('Transfer_Page_Transfer_Button_Disable',()=>{
+	cy.get(transferPageTransferButton).should('be.disabled')
+})
+
+//Insert transfer amount in transfer pop up
+const homepageTransferAmount = '.amount-input_amount__MY83h > input'
+Cypress.Commands.add('Insert_Transfer_Amount_In_Transfer_Pop_Up',(transferAmount)=>{
+cy.get(homepageTransferAmount).click()
+cy.get(homepageTransferAmount).type(transferAmount)
+})
+
+//Click Transfer button in transfer Pop up & transfer button disable when amount above main wallet / provider wallet
+const transferPopUpTransferButton = '.amount-inputs_actionSection__XeYV0 > .TT__standard-button'
+var transferPopUpTransferButtonText = 'Transfer'
+
+Cypress.Commands.add('Click_Transfer_Button_In_Transfer_Pop_Up', ()=>{
+	cy.get(transferPopUpTransferButton).should('have.text', transferPopUpTransferButtonText)
+	cy.get(transferPopUpTransferButton).click()
+})
+
+Cypress.Commands.add('Transfer_Pop_Up_Transfer_Button_Disable',()=>{
+	cy.get(transferPopUpTransferButton).should('be.disabled')
+})
+
+//Error message Pop Up show when transfer amount below 1
+const minAmountErrorMessage = '.modal_message__hHpBD'
+const closeMinAmountErrorMessage = '.modal_action__0o7AY > .TT__standard-button'
+var minAmountErrorMessageText = 'Transfer amount must be more than 1.'
+var closeMinAmountErrorMessageText = 'Okay'
+
+Cypress.Commands.add('Transfer_Amount_Less_Then_1_Error_Pop_Up',()=>{
+	cy.get(minAmountErrorMessage).should('have.text', minAmountErrorMessageText)
+	cy.get(closeMinAmountErrorMessage).should('have.text', closeMinAmountErrorMessageText)
+	cy.get(closeMinAmountErrorMessage).click()
 })

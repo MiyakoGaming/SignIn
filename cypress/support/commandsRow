@@ -84,8 +84,25 @@
 
 43. Withdraw Page - Withdraw & Uncheck Bank Error Message Pop Up (Row 442 - Row 460)
 
-44. 
+44. Game Category Menu Tab (Row 469 - Row 504)
 
-45. 
+45. Games sequence in Game Category (Row 506 - Row 521)
 
-46. 
+46. Click "Skip and proceed to game" to launch game (Row 523 - Row 530)
+
+47. Error message Pop Up when failed to launch game (Row 532 - Row 541)
+
+48. Open / close Transfer pop up - Homepage (Row 543 - Row 554)
+
+49. Switch wallet between provider wallet and main wallet (Row 560 - Row 576)
+
+50. Insert transfer amount in transfer page after select wallet (Row 578 - Row 587)
+
+51. Click Transfer button in transfer page & transfer button disable when amount above main wallet / provider wallet (Row 589 - Row 600)
+
+52. Insert transfer amount in transfer pop up (Row 602 - Row 607)
+
+53. Click Transfer button in transfer Pop up & transfer button disable when amount above main wallet / provider wallet (Row 609 - Row 620)
+
+54. Error message Pop Up show when transfer amount below 1 (Row 622 - Row 632)
+
