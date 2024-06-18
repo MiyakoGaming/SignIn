@@ -580,53 +580,257 @@ const transferAmountLabel = '.amount-inputs_transferAmountLabel___tK6N'
 const transferInsertAmount = '.amount-input_amount__MY83h > input'
 var transferAmountLabelText = 'Transfer amount'
 
-Cypress.Commands.add('Insert_Transfer_Amount_In_Transfer_Page',(transferAmount)=>{
-	cy.get(transferAmountLabel).should('have.text', transferAmountLabelText)
-	cy.get(transferInsertAmount).click
-	cy.get(transferInsertAmount).type(transferAmount)
-})
+Cypress.Commands.add(
+	'Insert_Transfer_Amount_In_Transfer_Page',
+	transferAmount => {
+		cy.get(transferAmountLabel).should('have.text', transferAmountLabelText)
+		cy.get(transferInsertAmount).click
+		cy.get(transferInsertAmount).type(transferAmount)
+	}
+)
 
 //Click Transfer button in transfer page & transfer button disable when amount above main wallet / provider wallet
-const transferPageTransferButton = '.amount-inputs_actionSection__XeYV0 > .TT__standard-button'
+const transferPageTransferButton =
+	'.amount-inputs_actionSection__XeYV0 > .TT__standard-button'
 var transferPageTransferButtonText = 'Transfer'
 
-Cypress.Commands.add('Click_Transfer_Button_In_Transfer_Page', ()=>{
+Cypress.Commands.add('Click_Transfer_Button_In_Transfer_Page', () => {
 	// cy.wait(6000)
-	cy.get(transferPageTransferButton).should('have.text', transferPageTransferButtonText)
+	cy.get(transferPageTransferButton).should(
+		'have.text',
+		transferPageTransferButtonText
+	)
+	cy.get(transferPageTransferButton).click()
 })
 
-Cypress.Commands.add('Transfer_Page_Transfer_Button_Disable',()=>{
+Cypress.Commands.add('Transfer_Page_Transfer_Button_Disable', () => {
 	cy.get(transferPageTransferButton).should('be.disabled')
 })
 
 //Insert transfer amount in transfer pop up
 const homepageTransferAmount = '.amount-input_amount__MY83h > input'
-Cypress.Commands.add('Insert_Transfer_Amount_In_Transfer_Pop_Up',(transferAmount)=>{
-cy.get(homepageTransferAmount).click()
-cy.get(homepageTransferAmount).type(transferAmount)
-})
+Cypress.Commands.add(
+	'Insert_Transfer_Amount_In_Transfer_Pop_Up',
+	transferAmount => {
+		cy.get(homepageTransferAmount).click()
+		cy.get(homepageTransferAmount).type(transferAmount)
+	}
+)
 
 //Click Transfer button in transfer Pop up & transfer button disable when amount above main wallet / provider wallet
-const transferPopUpTransferButton = '.amount-inputs_actionSection__XeYV0 > .TT__standard-button'
+const transferPopUpTransferButton =
+	'.amount-inputs_actionSection__XeYV0 > .TT__standard-button'
 var transferPopUpTransferButtonText = 'Transfer'
 
-Cypress.Commands.add('Click_Transfer_Button_In_Transfer_Pop_Up', ()=>{
-	cy.get(transferPopUpTransferButton).should('have.text', transferPopUpTransferButtonText)
+Cypress.Commands.add('Click_Transfer_Button_In_Transfer_Pop_Up', () => {
+	cy.get(transferPopUpTransferButton).should(
+		'have.text',
+		transferPopUpTransferButtonText
+	)
 	cy.get(transferPopUpTransferButton).click()
 })
 
-Cypress.Commands.add('Transfer_Pop_Up_Transfer_Button_Disable',()=>{
+Cypress.Commands.add('Transfer_Pop_Up_Transfer_Button_Disable', () => {
 	cy.get(transferPopUpTransferButton).should('be.disabled')
 })
 
-//Error message Pop Up show when transfer amount below 1
+//Error message Pop Up show when transfer amount below 1 in Tranfer Pop Up
 const minAmountErrorMessage = '.modal_message__hHpBD'
 const closeMinAmountErrorMessage = '.modal_action__0o7AY > .TT__standard-button'
 var minAmountErrorMessageText = 'Transfer amount must be more than 1.'
 var closeMinAmountErrorMessageText = 'Okay'
 
-Cypress.Commands.add('Transfer_Amount_Less_Then_1_Error_Pop_Up',()=>{
+Cypress.Commands.add('Transfer_Amount_Less_Then_1_Error_Pop_Up', () => {
 	cy.get(minAmountErrorMessage).should('have.text', minAmountErrorMessageText)
-	cy.get(closeMinAmountErrorMessage).should('have.text', closeMinAmountErrorMessageText)
+	cy.get(closeMinAmountErrorMessage).should(
+		'have.text',
+		closeMinAmountErrorMessageText
+	)
 	cy.get(closeMinAmountErrorMessage).click()
+})
+
+//Transfer Page & Transfer Pop Up "Enter promo code" label
+const enterPromoCodeLabel = '.inputs_textContainer__ksnHm > label'
+var enterPromoCodeLabelText = 'Enter promo code'
+
+Cypress.Commands.add(
+	'Enter_Promo_Code_Label_On_Transfer_Page_And_Transfer_Pop_Up',
+	() => {
+		cy.get(enterPromoCodeLabel).should('have.text', enterPromoCodeLabelText)
+	}
+)
+
+//Transfer Page & Transfer Pop Up "Select promo" Label
+const selectPromoCodeLabel = '.inputs_selectContainer__O9Ic_ > label'
+var selectPromoCodeLabelText = 'Select promo'
+
+Cypress.Commands.add(
+	'Select_Promo_Label_On_Transfer_Page_And_Transfer_Pop_Up',
+	() => {
+		cy.get(selectPromoCodeLabel).should('have.text', selectPromoCodeLabelText)
+	}
+)
+
+//Select promotion on Transfer page & Transfer Pop Up to apply promotion
+const promotionSelectionDropdown = '.inputs_selectContainer__O9Ic_ > select'
+
+Cypress.Commands.add(
+	'Select_Promotion_On_Transfer_Page_And_Transfer_Pop_Up',
+	selectActivePromo => {
+		cy.get(promotionSelectionDropdown)
+			.select(selectActivePromo)
+			.should('have.value', selectActivePromo)
+	}
+)
+
+//Insert promotion code on Transfer page and Transfer Pop Up & apply promotion
+const insertPromotionCode = '.inputs_textContainer__ksnHm > input'
+const usePromotionCodeButton =
+	'.promotion-code-input_container___dckd > .TT__standard-button'
+var usePromotionCodeButtonText = 'Use'
+
+Cypress.Commands.add(
+	'Insert_Promotion_Code_On_Transfer_Page_And_Transfer_Pop_Up',
+	insertPromoCode => {
+		cy.get(insertPromotionCode).click()
+		cy.get(insertPromotionCode).type(insertPromoCode)
+		cy.get(usePromotionCodeButton).should(
+			'have.text',
+			usePromotionCodeButtonText
+		)
+		cy.get(usePromotionCodeButton).click()
+	}
+)
+
+//Apply promotion success in Transfer page & Transfer Pop Up
+const removePromotionButton =
+	'.amount-inputs_selectedPromotionContainer__wjqQb > .TT__standard-button'
+var removePromotionButtonText = 'Remove Promotion'
+
+Cypress.Commands.add('Valid_Promotion_After_Apply', () => {
+	cy.get(removePromotionButton).should('have.text', removePromotionButtonText)
+})
+
+Cypress.Commands.add('Cancel_Valid_Promotion_After_Apply', () => {
+	cy.get(removePromotionButton).click()
+})
+
+//Scroll down to homepage promotion section & Promotion section Label
+const homepagePromotionSection = '.index_promotions__YGYtx'
+const homepagePromoSectionLabel = '.promotions-preview_header__RvKLD > h4'
+var homepagePromoSectionLabelText = 'Exclusive Promotions'
+
+Cypress.Commands.add('Scroll_Down_To_Homepage_Promotion', () => {
+	cy.get(homepagePromotionSection).scrollIntoView()
+})
+
+Cypress.Commands.add('Homepage_Promotion_Label', () => {
+	cy.get(homepagePromoSectionLabel).should(
+		'have.text',
+		homepagePromoSectionLabelText
+	)
+})
+
+//Promotion Page Label
+const promotionPageLabel = '.promotions_pageTitle__xhfxB > h2'
+var promotionPageLabelText = 'All Promotions'
+
+Cypress.Commands.add('Promotion_Page_Label', () => {
+	cy.get(promotionPageLabel).should('have.text', promotionPageLabelText)
+})
+
+//Click "View all promotions" button to promotion page
+const viewAllPromotionButton =
+	'.promotions-preview_footer__RnoK0 > a > .TT__standard-button'
+var viewAllPromotionButtonText = 'View all promotions'
+
+Cypress.Commands.add('Click_View_All_Promotion_Button', () => {
+	cy.get(viewAllPromotionButton).should('have.text', viewAllPromotionButtonText)
+	cy.get(viewAllPromotionButton).click()
+})
+
+//Click 4 promotions in promotion page
+const firstPromotionInPromotionPage =
+	'.promotions_promotions__FobUK > .promotion-item_promotionLink__TIxVb:nth-child(1)'
+const secondPromotionInPromotionPage =
+	'.promotions_promotions__FobUK > .promotion-item_promotionLink__TIxVb:nth-child(3)'
+const thirdPromotionInPromotionPage =
+	'.promotions_promotions__FobUK > .promotion-item_promotionLink__TIxVb:nth-child(2)'
+const forthPromotionInPromotionPage =
+	'.promotions_promotions__FobUK > .promotion-item_promotionLink__TIxVb:nth-child(4)'
+const promotionPageBanner = '.promotion_imageContainer__whkFN > img'
+
+Cypress.Commands.add('Click_1st_Promotion_On_Promotion_Page', () => {
+	cy.get(firstPromotionInPromotionPage).click()
+})
+
+Cypress.Commands.add('Click_2nd_Promotion_On_Promotion_Page', () => {
+	cy.get(secondPromotionInPromotionPage).click()
+})
+
+Cypress.Commands.add('Click_3rd_Promotion_On_Promotion_Page', () => {
+	cy.get(thirdPromotionInPromotionPage).click()
+})
+
+Cypress.Commands.add('Click_4th_Promotion_On_Promotion_Page', () => {
+	cy.get(forthPromotionInPromotionPage).click()
+})
+
+Cypress.Commands.add('Promotion_Content_Page_Banner', () => {
+	cy.get(promotionPageBanner).should('be.visible')
+})
+
+//Click 1st, 2nd, 3rd, 4th promotion on homepage promotion section
+const firstPromotionInHomepage =
+	'.promotions-preview_mainPromotionContent__8ftve'
+const secondPromotionInHomepage =
+	'.promotions-preview_subPromotion__x1RMG:nth-child(1) > .promotions-preview_subPromotionCTA__7KRMv'
+const thirdPromotionInHomepage =
+	'.promotions-preview_subPromotion__x1RMG:nth-child(2) > .promotions-preview_subPromotionCTA__7KRMv'
+const forthPromotionInHomepage =
+	'.promotions-preview_subPromotion__x1RMG:nth-child(3) > .promotions-preview_subPromotionCTA__7KRMv'
+
+Cypress.Commands.add('Click_1st_Promotion_On_Homepage', () => {
+	cy.get(firstPromotionInHomepage).click()
+})
+
+Cypress.Commands.add('Click_2nd_Promotion_On_Homepage', () => {
+	cy.get(secondPromotionInHomepage).click()
+})
+
+Cypress.Commands.add('Click_3rd_Promotion_On_Homepage', () => {
+	cy.get(thirdPromotionInHomepage).click()
+})
+
+Cypress.Commands.add('Click_4th_Promotion_On_Homepage', () => {
+	cy.get(forthPromotionInHomepage).click()
+})
+
+//Scroll down to promotion content page & Promotion section Label
+const morePromotionsForYou = '.promotion_moreTitle__bxf5v'
+var morePromotionsForYouText = 'More promotions for you'
+
+Cypress.Commands.add('Scroll_Down_To_More_Promotions_For_you', () => {
+	cy.get(morePromotionsForYou).scrollIntoView()
+})
+
+Cypress.Commands.add('More_Promotions_For_You_Label', () => {
+	cy.get(morePromotionsForYou).should('have.text', morePromotionsForYouText)
+})
+
+//Click 1st, 2nd, 3rd promotions promotion content page "More promotions For You" section
+const firstMorePromotions = '.promotion-item_promotionLink__TIxVb:nth-child(1)'
+const secondMorePromotions = '.promotion-item_promotionLink__TIxVb:nth-child(2)'
+const thirdMorePromotions = '.promotion-item_promotionLink__TIxVb:nth-child(3)'
+
+Cypress.Commands.add('Click_1st_Promotion_On_More_Promotion_section', ()=>{
+	cy.get(firstMorePromotions).click()
+})
+
+Cypress.Commands.add('Click_2nd_Promotion_On_More_Promotion_section', ()=>{
+	cy.get(secondMorePromotions).click()
+})
+
+Cypress.Commands.add('Click_3rd_Promotion_On_More_Promotion_section', ()=>{
+	cy.get(thirdMorePromotions).click()
 })

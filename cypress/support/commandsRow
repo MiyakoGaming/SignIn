@@ -96,13 +96,38 @@
 
 49. Switch wallet between provider wallet and main wallet (Row 560 - Row 576)
 
-50. Insert transfer amount in transfer page after select wallet (Row 578 - Row 587)
+50. Insert transfer amount in transfer page after select wallet (Row 578 - Row 590)
 
-51. Click Transfer button in transfer page & transfer button disable when amount above main wallet / provider wallet (Row 589 - Row 600)
+51. Click Transfer button in transfer page & transfer button disable when amount above main wallet / provider wallet (Row 592 - Row 608)
 
-52. Insert transfer amount in transfer pop up (Row 602 - Row 607)
+52. Insert transfer amount in transfer pop up (Row 610 - Row 618)
 
-53. Click Transfer button in transfer Pop up & transfer button disable when amount above main wallet / provider wallet (Row 609 - Row 620)
+53. Click Transfer button in transfer Pop up & transfer button disable when amount above main wallet / provider wallet (Row 620 - Row 635)
 
-54. Error message Pop Up show when transfer amount below 1 (Row 622 - Row 632)
+54. Error message Pop Up show when transfer amount below 1 (Row 637 - Row 650)
 
+55. Transfer Page & Transfer Pop Up "Enter promo code" label (Row 652 - Row 661)
+
+56. Transfer Page & Transfer Pop Up "Select promo" Label (Row 663 - Row 672)
+
+57. Select promotion on Transfer page & Transfer Pop Up to apply promotion (Row 674 - Row 684)
+
+58. Insert promotion code on Transfer page and Transfer Pop Up & apply promotion (Row 686 - Row 703)
+
+59. Apply promotion success in Transfer page & Transfer Pop Up (Row 705 - Row 716)
+
+60. Scroll down to homepage promotion section & Promotion section Label (Row 718 - Row 732)
+
+61. Promotion Page Label (Row 738 - Row 740)
+
+62. Click "View all promotions" button to promotion page (Row 742 - Row 750)
+
+63. Click 4 promotions in promotion page (Row 752 - Row 781)
+
+64. Click 1st, 2nd, 3rd, 4th promotion on homepage promotion section (Row 783 - Row 807)
+
+65. Scroll down to promotion content page & Promotion section Label (Row 809 - Row 819)
+
+66. Click 1st, 2nd, 3rd promotions promotion content page "More promotions For You" section (Row 821 - Row 836)
+
+67. 
