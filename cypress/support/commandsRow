@@ -1,133 +1,77 @@
-1. Sign successfully (Row 1 - Row 15)
-
-2. Sign In unsuccessfully and show error message pop up (Row 17 - Row 32)
-
-3. Verify Profile Username (Row 34 - Row 39)
-
-4. Click Profile Username to My account Page (Row 41 - Row 44)
-
-5. My account Page Label (Row 46 - Row 51)
-
-6. Deposit Page Label (Row 53 - Row 58)
-
-7. Withdraw Page Label (Row 60 - Row 65)
-
-8. Transfer Page Label (Row 67 - Row 72)
-
-9. Manage Bank Page Label (Row 74 - Row 79)
-
-10. Link a Bank Account Page Label (Row 81 - Row 89)
-
-11. Referral Page Label (Row 91 - Row 96)
-
-12. Change Password Page Label (Row 98 - Row 106)
-
-13. Click My Account tab on Side Menu --> My account page (Row 108 - Row 113)
-
-14. Click 3 dot indicator (Row 116 - Row 119)
-
-15. Click manage Banks tab in 3 dot indicator menu --> Manage banks Page (Row 121 - Row 127)
-
-16. Click Manage Banks tab on Side Menu --> Manage Banks page (Row 129 - Row 134)
-
-17. Click Manage banks on withdraw page (Row 136 - Row 140)
-
-18. Click change password tab in 3 dot indicator menu --> Change Password Page (Row 142 - Row 149)
-
-19. Click Change Password tab on Side Menu --> Change Password page (Row 151 - Row 156)
-
-20. From homepage to Deposit (Row 158 - Row 163)
-
-21. Click Deposit in My Account --> Deposit page (Row 165 - Row 168)
-
-22. Click Deposit tab on Side Menu --> Deposit page (Row 172 - Row 177)
-
-23. From homepage to Transfer (Row 179 - Row 184)
-
-24. Click Transfer in My Account --> Transfer page (Row 186 - Row 191)
-
-25. Click Transfer tab on Side Menu -->Transfer page (Row 193 - Row 198)
-
-26. From homepage to Withdraw page (Row 200 - Row 205)
-
-27. Click Withdraw in My Account --> Withdraw page (Row 207 - Row 212)
-
-28. Click Withdraw tab on Side Menu --> Withdraw page (Row 214 - Row 219)
-
-29. Click History in My Account --> History page (Row 221 - Row 226)
-
-30. Click History tab on Side Menu --> History page (Row 228 - Row 233)
-
-31. Click Referral tab on Side Menu --> Referral page (Row 235 - Row 239)
-
-32. Change password Page - Insert current & new password (Row 241 - Row 293)
-
-33. Deposit Page - Submit Deposit on the frontend (Row 295 - Row 318)
-
-34. Deposit Page - Deposit Success & Error message Pop Up (Row 320 - Row 335)
-
-35. Manage Banks Page - Click "Link a bank" tab at My bank account page (Row 337 - Row 343)
-
-36. Manage Banks Page - Select bank from dropdown list (Row 345 - Row 351)
-
-37. Manage Banks Page - Account Number container (Row 353 - Row 367)
-
-38. Manage Banks Page - Click "Link bank account" add bank (Row 369 - Row 376)
-
-39. Manage Banks Page - Duplicated account number error pop up (Row 378 - Row 395)
-
-40. Manage Banks Page - Show error message when reach bank account limit (Row 397 - Row 402)
-
-41. Withdraw Page - Submit Withdraw on the frontend (Row 404 - Row 422)
-
-42. Withdraw Page - Confirm or Cancel Submit Withdraw Pop Up (Row 424 - Row 440)
-
-43. Withdraw Page - Withdraw & Uncheck Bank Error Message Pop Up (Row 442 - Row 460)
-
-44. Game Category Menu Tab (Row 469 - Row 504)
-
-45. Games sequence in Game Category (Row 506 - Row 521)
-
-46. Click "Skip and proceed to game" to launch game (Row 523 - Row 530)
-
-47. Error message Pop Up when failed to launch game (Row 532 - Row 541)
-
-48. Open / close Transfer pop up - Homepage (Row 543 - Row 554)
-
-49. Switch wallet between provider wallet and main wallet (Row 560 - Row 576)
-
-50. Insert transfer amount in transfer page after select wallet (Row 578 - Row 590)
-
-51. Click Transfer button in transfer page & transfer button disable when amount above main wallet / provider wallet (Row 592 - Row 608)
-
-52. Insert transfer amount in transfer pop up (Row 610 - Row 618)
-
-53. Click Transfer button in transfer Pop up & transfer button disable when amount above main wallet / provider wallet (Row 620 - Row 635)
-
-54. Error message Pop Up show when transfer amount below 1 (Row 637 - Row 650)
-
-55. Transfer Page & Transfer Pop Up "Enter promo code" label (Row 652 - Row 661)
-
-56. Transfer Page & Transfer Pop Up "Select promo" Label (Row 663 - Row 672)
-
-57. Select promotion on Transfer page & Transfer Pop Up to apply promotion (Row 674 - Row 684)
-
-58. Insert promotion code on Transfer page and Transfer Pop Up & apply promotion (Row 686 - Row 703)
-
-59. Apply promotion success in Transfer page & Transfer Pop Up (Row 705 - Row 716)
-
-60. Scroll down to homepage promotion section & Promotion section Label (Row 718 - Row 732)
-
-61. Promotion Page Label (Row 738 - Row 740)
-
-62. Click "View all promotions" button to promotion page (Row 742 - Row 750)
-
-63. Click 4 promotions in promotion page (Row 752 - Row 781)
-
-64. Click 1st, 2nd, 3rd, 4th promotion on homepage promotion section (Row 783 - Row 807)
-
-65. Scroll down to promotion content page & Promotion section Label (Row 809 - Row 819)
-
-66. Click 1st, 2nd, 3rd promotions promotion content page "More promotions For You" section (Row 821 - Row 836)
-
-67. 
+Row. //Label
+1. Website_Homepage_URL
+6. Website_Sign_In_Page_URL
+11. Click Sign In Button on homepage
+20. Sign successfully
+36. Sign In unsuccessfully and show error message pop up
+53. Verify Profile Username
+60. Click Profile Username to My account Page
+65. My account Page Label
+74. Deposit Page Label
+81. Withdraw Page Label
+88. Transfer Page Label
+95. Manage Bank Page Label
+102. Link a Bank Account Page Label
+112. Referral Page Label
+119. Change Password Page Label
+129. Click My Account tab on Side Menu --> My account page
+136. Click 3 dot indicator
+142. Click manage Banks tab in 3 dot indicator menu --> Manage banks Page
+150. Click Manage Banks tab on Side Menu --> Manage Banks page
+157. Click Manage banks on withdraw page
+163. Click change password tab in 3 dot indicator menu --> Change Password Page
+172. Click Change Password tab on Side Menu --> Change Password page
+179. From homepage to Deposit
+186. Click Deposit in My Account --> Deposit page
+193. Click Deposit tab on Side Menu --> Deposit page
+200. From homepage to Transfer
+207. Click Transfer in My Account --> Transfer page
+214. Click Transfer tab on Side Menu -->Transfer page
+221. From homepage to Withdraw page
+228. Click Withdraw in My Account --> Withdraw page
+235. Click Withdraw tab on Side Menu --> Withdraw page
+242. Click History in My Account --> History page
+249. Click History tab on Side Menu --> History page
+256. Click Referral tab on Side Menu --> Referral page
+262. Change password Page - Insert current & new password
+316. Deposit Page - Submit Deposit on the frontend
+341. Deposit Page - Deposit Success & Error message Pop Up
+358. Manage Banks Page - Click "Link a bank" tab at My bank account page
+366. Manage Banks Page - Select bank from dropdown list
+374. Manage Banks Page - Account Number container
+390. Manage Banks Page - Click "Link bank account" add bank
+399. Manage Banks Page - Duplicated account number error pop up
+418. Manage Banks Page - Show error message when reach bank account limit
+425. Withdraw Page - Submit Withdraw on the frontend
+445. Withdraw Page - Confirm or Cancel Submit Withdraw Pop Up
+463. Withdraw Page - Withdraw & Uncheck Bank Error Message Pop Up
+490. Game Category Menu Tab
+527. Games sequence in Game Category
+544. Click "Skip and proceed to game" to launch game
+553. Error message Pop Up when failed to launch game
+568. Open / close Transfer pop up - Homepage
+581. Switch wallet between provider wallet and main wallet
+599. Insert transfer amount in transfer page after select wallet
+613. Click Transfer button in transfer page & transfer button disable when amount above main wallet / provider wallet
+631. Insert transfer amount in transfer pop up
+641. Click Transfer button in transfer Pop up & transfer button disable when amount above main wallet / provider wallet 
+658. Error message Pop Up show when transfer amount below 1 in Transfer Page
+673. Transfer Page & Transfer Pop Up "Enter promo code" label
+684. Transfer Page & Transfer Pop Up "Select promo" Label
+695. Select promotion on Transfer page & Transfer Pop Up to apply promotion
+707. Insert promotion code on Transfer page and Transfer Pop Up & apply promotion
+726. Apply promotion success in Transfer page & Transfer Pop Up
+739. Scroll down to homepage promotion section & Promotion section Label
+755. Promotion Page Label
+763. Click "View all promotions" button to promotion page
+773. Click 4 promotions in promotion page
+804. Click 1st, 2nd, 3rd, 4th promotion on homepage promotion section
+830. Scroll down to promotion content page & Promotion section Label
+842. Click 1st, 2nd, 3rd promotions promotion content page "More promotions For You" section
+859. Click message icon on header
+866. Message Pop up label
+875. Message See More button
+883. Message Page Label
+891. Click message page Unread button
+896. Click message page All button
+901. Click message in Message Pop up

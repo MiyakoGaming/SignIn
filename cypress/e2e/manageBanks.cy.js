@@ -35,7 +35,7 @@ var validAccountNumber1 = '104687GGAA%^&'
 var validAccountNumber2 = '1049AABB123456'
 
 beforeEach(() => {
-	cy.visit('https://www.jufsolution3.com/auth/signin?redirect=/')
+	cy.Website_Sign_In_Page_URL()
 	cy.Test_Login_Account(validUsername, validPassword)
 	cy.Profile_Username(validUsername)
 	cy.Navigation_Homepage_To_Withdraw()

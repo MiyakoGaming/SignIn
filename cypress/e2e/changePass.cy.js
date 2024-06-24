@@ -32,7 +32,7 @@ var maxInvalidPassword = '1111122222333334444455'
 
 
 beforeEach(() => {
-	cy.visit('https://www.jufsolution3.com/auth/signin?redirect=/')
+	cy.Website_Sign_In_Page_URL()
 	cy.Test_Login_Account(validUsername, validPassword)
 	cy.Profile_Username(validUsername)
 	cy.Click_Profile_Username()
@@ -42,7 +42,7 @@ beforeEach(() => {
 })
 
 //testChangePassword{(invalid current password, valid new password, valid retype password, false) , (test case, false)}
-it.skip('Verify change password unsuccessful with invalid current password, valid new & retype password .skip()', () => {
+it('Verify change password unsuccessful with invalid current password, valid new & retype password', () => {
 	cy.Change_Password_Details(invalidCurrentPassword, newPassword2, newPassword2)
 	cy.My_Account_Page_Label()
 })
@@ -66,7 +66,7 @@ it.skip('Verify change password unsuccessful with valid current & retype passwor
 })
 
 //testChangePassword{(valid current password, valid new password, valid retype password, true) , (test case, true)}
-it('Verify change password successful with valid current & new & retype password', ()=>{
+it.skip('Verify change password successful with valid current & new & retype password .skip()', ()=>{
 	cy.Change_Password_Details(currentPassword1, newPassword1, newPassword1)
 	cy.My_Account_Page_Label()
 })

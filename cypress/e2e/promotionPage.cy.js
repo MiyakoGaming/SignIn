@@ -18,7 +18,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 })
 
 beforeEach(() => {
-	cy.visit('https://www.jufsolution3.com')
+	cy.Website_Homepage_URL()
 })
 
 //testPromotionContent{(Click homepage 'View all promotion' to promotion page, true) , (test case, true)}

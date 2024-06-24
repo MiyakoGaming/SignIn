@@ -29,7 +29,7 @@ const checkboxBank1 = '#bank__396'
 const checkboxBank2 = '#bank__399'
 
 beforeEach(() => {
-	cy.visit('https://www.jufsolution3.com/auth/signin?redirect=/')
+	cy.Website_Sign_In_Page_URL()
 	cy.Test_Login_Account(validUsername, validPassword)
 	cy.Profile_Username(validUsername)
 	cy.Navigation_Homepage_To_Withdraw()

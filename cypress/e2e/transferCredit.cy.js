@@ -33,7 +33,7 @@ var invalidMaxTransferAmount = '500'
 var validTransferAmount = '50'
 
 beforeEach(() => {
-	cy.visit('https://www.jufsolution3.com/auth/signin?redirect=/')
+	cy.Website_Sign_In_Page_URL()
 	cy.Test_Login_Account(validUsername, validPassword)
 	cy.Profile_Username(validUsername)
 })

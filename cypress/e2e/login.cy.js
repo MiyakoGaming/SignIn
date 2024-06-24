@@ -19,13 +19,16 @@ var invalidUsername = 'mickey678'
 var invalidPassword = 'yes789631'
 
 beforeEach(() => {
-	cy.visit('https://www.jufsolution3.com/auth/signin?redirect=/')
+	cy.Website_Homepage_URL()
+	cy.Click_Homepage_Sign_In_Button()
 })
 
 // testSignIn{(valid username, valid password, true) , (test case, true)}
 it('Verify successful user authentication with valid username and password', () => {
 	cy.Test_Login_Account(validUsername, validPassword)
 	cy.Profile_Username(validUsername)
+	cy.Click_Profile_Username()
+	cy.My_Account_Page_Label(validUsername)
 })
 
 //testSignIn{(valid username, valid password, true) , (test case, false)}

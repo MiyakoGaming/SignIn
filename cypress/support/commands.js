@@ -1,3 +1,22 @@
+//Website_Homepage_URL
+Cypress.Commands.add('Website_Homepage_URL', () => {
+	cy.visit('https://www.demoai1.com')
+})
+
+//Website_Sign_In_Page_URL
+Cypress.Commands.add('Website_Sign_In_Page_URL', () => {
+	cy.visit('https://www.demoai1.com/auth/signin?redirect=/')
+})
+
+//Click Sign In Button on homepage
+const homepageSignInButton = ':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_guestActions__La_tU > .user-quick-view_signInLink__trPsS'
+var homepageSignInButtonText = 'Sign In'
+
+Cypress.Commands.add('Click_Homepage_Sign_In_Button', ()=>{
+	cy.get(homepageSignInButton).should('have.text', homepageSignInButtonText)
+	cy.get(homepageSignInButton).click()
+})
+
 //Sign In successfully
 const usernameContainer = '.inputs_textContainer__ksnHm > input'
 const passwordContainer = '.inputs_inputContainer__YQKEw > input'
@@ -45,9 +64,11 @@ Cypress.Commands.add('Click_Profile_Username', () => {
 
 //My account Page Label
 const myAccountPageLabel = '.account_title__CRo87'
+const myAccountPageUsername = '.account_playerName__2iV85'
 var myAccountPageLabelText = 'My Account'
-Cypress.Commands.add('My_Account_Page_Label', () => {
+Cypress.Commands.add('My_Account_Page_Label', accountPageUsername => {
 	cy.get(myAccountPageLabel).should('have.text', myAccountPageLabelText)
+	cy.get(myAccountPageUsername).should('have.text', accountPageUsername)
 })
 
 //Deposit Page Label
@@ -634,7 +655,7 @@ Cypress.Commands.add('Transfer_Pop_Up_Transfer_Button_Disable', () => {
 	cy.get(transferPopUpTransferButton).should('be.disabled')
 })
 
-//Error message Pop Up show when transfer amount below 1 in Tranfer Pop Up
+//Error message Pop Up show when transfer amount below 1 in Transfer Pop Up
 const minAmountErrorMessage = '.modal_message__hHpBD'
 const closeMinAmountErrorMessage = '.modal_action__0o7AY > .TT__standard-button'
 var minAmountErrorMessageText = 'Transfer amount must be more than 1.'
@@ -823,14 +844,100 @@ const firstMorePromotions = '.promotion-item_promotionLink__TIxVb:nth-child(1)'
 const secondMorePromotions = '.promotion-item_promotionLink__TIxVb:nth-child(2)'
 const thirdMorePromotions = '.promotion-item_promotionLink__TIxVb:nth-child(3)'
 
-Cypress.Commands.add('Click_1st_Promotion_On_More_Promotion_section', ()=>{
+Cypress.Commands.add('Click_1st_Promotion_On_More_Promotion_section', () => {
 	cy.get(firstMorePromotions).click()
 })
 
-Cypress.Commands.add('Click_2nd_Promotion_On_More_Promotion_section', ()=>{
+Cypress.Commands.add('Click_2nd_Promotion_On_More_Promotion_section', () => {
 	cy.get(secondMorePromotions).click()
 })
 
-Cypress.Commands.add('Click_3rd_Promotion_On_More_Promotion_section', ()=>{
+Cypress.Commands.add('Click_3rd_Promotion_On_More_Promotion_section', () => {
 	cy.get(thirdMorePromotions).click()
 })
+
+//Click message icon on header
+const messageIcon = '.messages-quick-view_button__Zz_37'
+
+Cypress.Commands.add('Click_Message_Icon_On_Header', () => {
+	cy.get(messageIcon).click()
+})
+
+//Message Pop up label
+const messagePopUpLabel =
+	'.messages-quick-view_headerRow__GTk3P > .top-nav-bar_dropdownTitle__OtA5n'
+var messagePopUpLabelText = 'Messages'
+
+Cypress.Commands.add('Message_Pop_Up_Label', () => {
+	cy.get(messagePopUpLabel).should('have.text', messagePopUpLabelText)
+})
+
+//Message See More button
+const messageSeeMoreButton =
+	'.messages-quick-view_seeMoreSection__1Ic7q > .TT__standard-button'
+
+Cypress.Commands.add('Message_See_More_Button', () => {
+	cy.get(messageSeeMoreButton).click()
+})
+
+//Message Page Label
+const messagePageLabel = '.messages_title__WGWJV'
+var messagePageLabelText = 'Messages'
+
+Cypress.Commands.add('Message_Page_Label', () => {
+	cy.get(messagePageLabel).should('have.text', messagePageLabelText)
+})
+
+//Click message page Unread button
+const messagePageUnreadButton =
+	'.messages_tabs__IGWFY > .TT__standard-button:nth:child(2)'
+var messagePageUnreadButtonText = 'Unread'
+
+//Click message page All button
+const messagePageAllButton =
+	'.messages_tabs__IGWFY > .TT__standard-button:nth:child(1)'
+var messagePageAllButtonText = 'All'
+
+//Click message in Message Pop up, Learn more, Go to Promotion
+const firstmessageInMessagePopUp =
+	'.message-list_container__9cx9C > :nth-child(1)'
+const secondmessageInMessagePopUp =
+	'.message-list_container__9cx9C > :nth-child(2)'
+const thirdmessageInMessagePopUp =
+	'.message-list_container__9cx9C > :nth-child(3)'
+const messageURLButton = '.message-list_cta__mX_o9 > a > .TT__standard-button'
+
+Cypress.Commands.add('Click_1st_Message_In_Pop_Up', ()=>{
+	cy.get(firstmessageInMessagePopUp).click()
+})
+
+Cypress.Commands.add('Click_2nd_Message_In_Pop_Up', ()=>{
+	cy.get(secondmessageInMessagePopUp).click()
+})
+
+Cypress.Commands.add('Click_3rd_Message_In_Pop_Up', ()=>{
+	cy.get(thirdmessageInMessagePopUp).click()
+})
+
+Cypress.Commands.add('Click_1st_Message_URL_Button', ()=>{
+	cy.get(firstmessageInMessagePopUp)
+	cy.get(messageURLButton).click()
+})
+
+Cypress.Commands.add('Click_2nd_Message_URL_Button', ()=>{
+	cy.get(secondmessageInMessagePopUp)
+	cy.get(messageURLButton).click()
+})
+
+Cypress.Commands.add('Click_3rd_Message_URL_Button', ()=>{
+	cy.get(thirdmessageInMessagePopUp)
+	cy.get(messageURLButton).click()
+})
+
+//Message page Navigation arrow & number page
+const pageNumberOne = ':nth-child(2) > .paginate_pageLink__jvDYt'
+const pageNumberTwo = ':nth-child(3) > .paginate_pageLink__jvDYt'
+const previousArrow = ':nth-child(1) > .paginate_pageLink__jvDYt'
+const nextArrow = ':nth-child(4) > .paginate_pageLink__jvDYt'
+const activeNumber = '.paginate_pageItem__9hQMN.paginate_active__iN9Xg > .paginate_pageLink__jvDYt'
+const disableArrow = '.paginate_pageItem__9hQMN.paginate_disabled__Rv1pD > .paginate_pageLink__jvDYt'

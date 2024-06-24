@@ -1,5 +1,5 @@
 beforeEach(() => {
-	cy.visit('https://www.jufsolution3.com/auth/signin?redirect=/')
+	cy.Website_Sign_In_Page_URL()
 })
 
 function getUsernameAndPassword(usernameKey, passwordKey) {
