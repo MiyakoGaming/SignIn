@@ -9,10 +9,11 @@ Cypress.Commands.add('Website_Sign_In_Page_URL', () => {
 })
 
 //Click Sign In Button on homepage
-const homepageSignInButton = ':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_guestActions__La_tU > .user-quick-view_signInLink__trPsS'
+const homepageSignInButton =
+	':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_guestActions__La_tU > .user-quick-view_signInLink__trPsS'
 var homepageSignInButtonText = 'Sign In'
 
-Cypress.Commands.add('Click_Homepage_Sign_In_Button', ()=>{
+Cypress.Commands.add('Click_Homepage_Sign_In_Button', () => {
 	cy.get(homepageSignInButton).should('have.text', homepageSignInButtonText)
 	cy.get(homepageSignInButton).click()
 })
@@ -888,15 +889,25 @@ Cypress.Commands.add('Message_Page_Label', () => {
 	cy.get(messagePageLabel).should('have.text', messagePageLabelText)
 })
 
-//Click message page Unread button
-const messagePageUnreadButton =
-	'.messages_tabs__IGWFY > .TT__standard-button:nth:child(2)'
-var messagePageUnreadButtonText = 'Unread'
+//Click message Unread button
+const messageUnreadButton =
+	'.messages_tabs__IGWFY > .buttons_link__UIxx_:nth-child(2)'
+var messageUnreadButtonText = 'Unread'
 
-//Click message page All button
-const messagePageAllButton =
-	'.messages_tabs__IGWFY > .TT__standard-button:nth:child(1)'
-var messagePageAllButtonText = 'All'
+Cypress.Commands.add('Click_Message_Unread_Button', () => {
+	cy.get(messageUnreadButton).should('have.text', messageUnreadButtonText)
+	cy.get(messageUnreadButton).click()
+})
+
+//Click message All button
+const messageAllButton =
+	'.messages_tabs__IGWFY > .buttons_link__UIxx_:nth-child(1)'
+var messageAllButtonText = 'All'
+
+Cypress.Commands.add('Click_Message_All_Button', () => {
+	cy.get(messageAllButton).should('have.text', messageAllButtonText)
+	cy.get(messageAllButton).click()
+})
 
 //Click message in Message Pop up, Learn more, Go to Promotion
 const firstmessageInMessagePopUp =
@@ -907,37 +918,255 @@ const thirdmessageInMessagePopUp =
 	'.message-list_container__9cx9C > :nth-child(3)'
 const messageURLButton = '.message-list_cta__mX_o9 > a > .TT__standard-button'
 
-Cypress.Commands.add('Click_1st_Message_In_Pop_Up', ()=>{
+Cypress.Commands.add('Click_1st_Message_In_Pop_Up', () => {
 	cy.get(firstmessageInMessagePopUp).click()
 })
 
-Cypress.Commands.add('Click_2nd_Message_In_Pop_Up', ()=>{
+Cypress.Commands.add('Click_2nd_Message_In_Pop_Up', () => {
 	cy.get(secondmessageInMessagePopUp).click()
 })
 
-Cypress.Commands.add('Click_3rd_Message_In_Pop_Up', ()=>{
+Cypress.Commands.add('Click_3rd_Message_In_Pop_Up', () => {
 	cy.get(thirdmessageInMessagePopUp).click()
 })
 
-Cypress.Commands.add('Click_1st_Message_URL_Button', ()=>{
+Cypress.Commands.add('Click_1st_Message_URL_Button', () => {
 	cy.get(firstmessageInMessagePopUp)
 	cy.get(messageURLButton).click()
 })
 
-Cypress.Commands.add('Click_2nd_Message_URL_Button', ()=>{
+Cypress.Commands.add('Click_2nd_Message_URL_Button', () => {
 	cy.get(secondmessageInMessagePopUp)
 	cy.get(messageURLButton).click()
 })
 
-Cypress.Commands.add('Click_3rd_Message_URL_Button', ()=>{
+Cypress.Commands.add('Click_3rd_Message_URL_Button', () => {
 	cy.get(thirdmessageInMessagePopUp)
 	cy.get(messageURLButton).click()
 })
 
-//Message page Navigation arrow & number page
-const pageNumberOne = ':nth-child(2) > .paginate_pageLink__jvDYt'
-const pageNumberTwo = ':nth-child(3) > .paginate_pageLink__jvDYt'
-const previousArrow = ':nth-child(1) > .paginate_pageLink__jvDYt'
-const nextArrow = ':nth-child(4) > .paginate_pageLink__jvDYt'
-const activeNumber = '.paginate_pageItem__9hQMN.paginate_active__iN9Xg > .paginate_pageLink__jvDYt'
-const disableArrow = '.paginate_pageItem__9hQMN.paginate_disabled__Rv1pD > .paginate_pageLink__jvDYt'
+//Click message in Message page, Learn more, Go to Promotion
+const messagePageFirstURLButton =
+	':nth-child(1) > .message-list_contentContainer__JoxJr > .message-list_cta__mX_o9'
+const messagePageSecondURLButton =
+	':nth-child(2) > .message-list_contentContainer__JoxJr > .message-list_cta__mX_o9'
+const messagePageThirdURLButton =
+	':nth-child(3) > .message-list_contentContainer__JoxJr > .message-list_cta__mX_o9'
+
+Cypress.Commands.add('Click_1st_Message_Page_URL_Button', () => {
+	cy.get(messagePageFirstURLButton).click()
+})
+
+Cypress.Commands.add('Click_2nd_Message_Page_URL_Button', () => {
+	cy.get(messagePageSecondURLButton).click()
+})
+
+Cypress.Commands.add('Click_3rd_Message_Page_URL_Button', () => {
+	cy.get(messagePageThirdURLButton).click()
+})
+
+//Message & Notification page Navigation arrow & number page
+const messagePageNumberOne = ':nth-child(2) > .paginate_pageLink__jvDYt'
+const messagePageNumberTwo = ':nth-child(3) > .paginate_pageLink__jvDYt'
+const messagePagePreviousArrow = ':nth-child(1) > .paginate_pageLink__jvDYt'
+const messagePageNextArrow = ':nth-child(4) > .paginate_pageLink__jvDYt'
+const messagePageActiveNumber =
+	'.paginate_pageItem__9hQMN.paginate_active__iN9Xg > .paginate_pageLink__jvDYt'
+const messagePageDisableArrow =
+	'.paginate_pageItem__9hQMN.paginate_disabled__Rv1pD > .paginate_pageLink__jvDYt'
+
+Cypress.Commands.add('Click_Message_Page_One', () => {
+	cy.get(messagePageNumberOne).click()
+})
+
+Cypress.Commands.add('Click_Message_Page_Two', () => {
+	cy.get(messagePageNumberTwo).click()
+})
+
+Cypress.Commands.add('Click_Message_Page_Previous_Arrow', () => {
+	cy.get(messagePagePreviousArrow).click()
+})
+
+Cypress.Commands.add('Click_Message_Page_Next_Arrow', () => {
+	cy.get(messagePageNextArrow).click()
+})
+
+Cypress.Commands.add('Click_Message_Page_Active_Number', () => {
+	cy.get(messagePageActiveNumber).click()
+})
+
+Cypress.Commands.add('Click_Message_Page_Disable_Arrow', () => {
+	cy.get(messagePageDisableArrow).click()
+})
+
+//Click notification icon on header
+const notificationIcon = '.notifications-quick-view_button__7l_B0'
+
+Cypress.Commands.add('Click_Notification_Icon_On_Header', () => {
+	cy.get(notificationIcon).click()
+})
+
+//Notification Pop Up label
+const notificationPopUpLabel =
+	'.notifications-quick-view_headerRow__M_UK9 > .top-nav-bar_dropdownTitle__OtA5n'
+var notificationPopUpLabelText = 'Notifications'
+
+Cypress.Commands.add('Notification_Pop_Up_Label', () => {
+	cy.get(notificationPopUpLabel).should('have.text', notificationPopUpLabelText)
+})
+
+//Notification See More button
+const notificationSeeMoreButton =
+	'.notifications-quick-view_seeMoreSection__NjbwR > .TT__standard-button'
+
+Cypress.Commands.add('Click_Notification_See_More_Button', () => {
+	cy.get(notificationSeeMoreButton).click()
+})
+
+//Notification Page Label
+const notificationPageLabel = '.notifications_title__H8js2'
+var notificationPageLabelText = 'Notifications'
+
+Cypress.Commands.add('Notification_Page_Label', () => {
+	cy.get(notificationPageLabel).should('have.text', notificationPageLabelText)
+})
+
+//Click notification Unread button
+const notificationUnreadButton =
+	'.notifications_tabs__4U4zB > .buttons_button__Pv4L3:nth-child(2)'
+var notificationUnreadButtonText = 'Unread'
+
+Cypress.Commands.add('Click_Notification_Unread_Button', () => {
+	cy.get(notificationUnreadButton).should(
+		'have.text',
+		notificationUnreadButtonText
+	)
+	cy.get(notificationUnreadButton).click()
+})
+
+//Click notification All button
+const notificationAllButton =
+	'.notifications_tabs__4U4zB > .buttons_button__Pv4L3:nth-child(1)'
+var notificationAllButtonText = 'All'
+
+Cypress.Commands.add('Click_Notification_All_Button', () => {
+	cy.get(notificationAllButton).should('have.text', notificationAllButtonText)
+	cy.get(notificationAllButton).click()
+})
+
+//Click notification in notification pop up
+const firstNotificationInPopUp =
+	'.notification-list_container__j0RFa > .notification-list_notificationItem__fYNTV:nth-child(1)'
+const secondNotificationInPopUp =
+	'.notification-list_container__j0RFa > .notification-list_notificationItem__fYNTV:nth-child(2)'
+const thirdNotificationInPopUp =
+	'.notification-list_container__j0RFa > .notification-list_notificationItem__fYNTV:nth-child(3)'
+
+Cypress.Commands.add('Click_1st_Notification_In_Notification_Pop_up', () => {
+	cy.get(firstNotificationInPopUp).click()
+})
+
+Cypress.Commands.add('Click_2nd_Notification_In_Notification_Pop_up', () => {
+	cy.get(secondNotificationInPopUp).click()
+})
+
+Cypress.Commands.add('Click_3rd_Notification_In_Notification_Pop_up', () => {
+	cy.get(thirdNotificationInPopUp).click()
+})
+
+//Click notification in notification page
+const firstNotificationInPage =
+	'.notification-list_container__j0RFa > :nth-child(1)'
+const secondNotificationInPage =
+	'.notification-list_container__j0RFa > :nth-child(2)'
+const thirdNotificationInPage =
+	'.notification-list_container__j0RFa > :nth-child(3)'
+
+Cypress.Commands.add('Click_1st_Notification_In_Notification_Page', () => {
+	cy.get(firstNotificationInPage).click()
+})
+
+Cypress.Commands.add('Click_2nd_Notification_In_Notification_Page', () => {
+	cy.get(secondNotificationInPage).click()
+})
+
+Cypress.Commands.add('Click_3rd_Notification_In_Notification_Page', () => {
+	cy.get(thirdNotificationInPage).click()
+})
+
+//History page Transfers tab
+const historyTransferTab = '.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(1)'
+
+Cypress.Commands.add('Click_History_Page_Transfer_Tab', ()=>{
+	cy.get(historyTransferTab).click()
+})
+
+//History page Deposits tab
+const historyDepositTab = '.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
+
+Cypress.Commands.add('Click_History_Page_Deposit_Tab', ()=>{
+	cy.get(historyDepositTab).click()
+})
+
+//History page Withdrawals tab
+const historyWithdrawTab = '.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
+
+Cypress.Commands.add('Click_History_Page_Withdrawal_Tab', ()=>{
+	cy.get(historyWithdrawTab).click()
+})
+
+//History page Rebates tab
+const historyRebateTab = '.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
+
+Cypress.Commands.add('Click_History_Page_Rebates_Tab', ()=>{
+	cy.get(historyRebateTab).click()
+})
+
+//History page Adjustments tab
+const historyAdjustmentTab = '.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
+
+Cypress.Commands.add('Click_History_Page_Adjustment_Tab', ()=>{
+	cy.get(historyAdjustmentTab).click()
+})
+
+//History page Bonus tab
+const historyBonusTab = '.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
+
+Cypress.Commands.add('Click_History_Page_Bonus_Tab', ()=>{
+	cy.get(historyBonusTab).click()
+})
+
+//History Page Active Tab
+const historyActiveTab = '.history_tabButton__active__tGtBQ'
+var historyTransferTabText = 'Transfers'
+var historyDepositTabText = 'Deposits'
+var historyWithdrawTabText = 'Withdrawals'
+var historyRebateTabText = 'Rebates'
+var historyAdjustmentTabText = 'Adjustments'
+var historyBonusTabText = 'Bonus'
+
+Cypress.Commands.add('History_Page_Transfer_Active_Tab', ()=>{
+	cy.get(historyActiveTab).should('have.text', historyTransferTabText)
+})
+
+Cypress.Commands.add('History_Page_Deposit_Active_Tab', ()=>{
+	cy.get(historyActiveTab).should('have.text', historyDepositTabText)
+})
+
+Cypress.Commands.add('History_Page_Withdrawal_Active_Tab', ()=>{
+	cy.get(historyActiveTab).should('have.text', historyWithdrawTabText)
+})
+
+Cypress.Commands.add('History_Page_Rebate_Active_Tab', ()=>{
+	cy.get(historyActiveTab).should('have.text', historyRebateTabText)
+})
+
+Cypress.Commands.add('History_Page_Adjustment_Active_Tab', ()=>{
+	cy.get(historyActiveTab).should('have.text', historyAdjustmentTabText)
+})
+
+Cypress.Commands.add('History_Page_Bonus_Active_Tab', ()=>{
+	cy.get(historyActiveTab).should('have.text', historyBonusTabText)
+})
+
+//Click Sign Up to play button

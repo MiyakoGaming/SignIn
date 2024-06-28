@@ -31,8 +31,109 @@ beforeEach(() => {
 })
 
 //testMessage{(Message Pop up, Unread button) , (test case, true)}
-it('Verify Message Pop up page unread button', ()=>{
-    cy.Click_Message_Icon_On_Header()
-    cy.Message_Pop_Up_Label()
+it.skip('Verify Message Pop up unread button .skip()', () => {
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_Pop_Up_Label()
+	cy.Click_Message_Unread_Button()
+})
+
+//testMessage{(Message Pop up, All button) , (test case, true)}
+it.skip('Verify Message Pop up All button .skip()', () => {
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_Pop_Up_Label()
+	cy.Click_Message_Unread_Button()
+	cy.Click_Message_All_Button()
+})
+
+//testMessage{(Message Pop up, See More Button) , (test case, true)}it('Verify Message Pop up page unread button', () => {
+it.skip('Verify Message Pop up see more button .skip()', () => {
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_Pop_Up_Label()
 	cy.Message_See_More_Button()
+	cy.Message_Page_Label()
+})
+
+//testMessage{(Message Pop up, Click first message) , (test case, true)}
+it.skip('Verify message Pop up click the first message direct to message page .skip()', () => {
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_Pop_Up_Label()
+	cy.Click_1st_Message_In_Pop_Up()
+})
+
+//testMessage{(Message Pop up, Click second message) , (test case, true)}
+it.skip('Verify message Pop up click the second message direct to message page .skip()', () => {
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_Pop_Up_Label()
+	cy.Click_2nd_Message_In_Pop_Up()
+})
+
+//testMessage{(Message Pop up, Click third message) , (test case, true)}
+it.skip('Verify message Pop up click the third message direct to message page .skip()', () => {
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_Pop_Up_Label()
+	cy.Click_3rd_Message_In_Pop_Up()
+})
+
+//testMessage{(Message Pop Up, Click learn more / Go to promotion) , (test case, true)}
+it.skip('Verify message Pop up click learn more button .skip()', () => {
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_Pop_Up_Label()
+	cy.Click_1st_Message_URL_Button()
+})
+
+//testMessage{(Message Page, Unread button) , (test case, true)}
+it.skip('Verify message page click unread button .skip()', () => {
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_See_More_Button()
+	cy.Message_Page_Label()
+	cy.Click_Message_Unread_Button()
+})
+
+//testMessage{(Message Page, All button) , (test case, true)}
+it.skip('Verify message page click all button .skip()', () => {
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_See_More_Button()
+	cy.Message_Page_Label()
+	cy.Click_Message_Unread_Button()
+	cy.Click_Message_All_Button()
+})
+
+//testMessage{(Message Page, Click learn more / Go to promotion) , (test case, true)}
+it.skip('Verify message page click learn more button .skip()', () => {
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_See_More_Button()
+	cy.Message_Page_Label()
+	cy.Click_1st_Message_Page_URL_Button()
+})
+
+//testMessage{(Message Page, Click inactive number page) , (test case, true)}
+it('Verify message page click inactive number page', ()=>{
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_See_More_Button()
+	cy.Message_Page_Label()
+	cy.Click_Message_Page_Two()
+})
+
+//testMessage{(Message Page, Click active number page) , (test case, true)}
+it('Verify message page click active number page', ()=>{
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_See_More_Button()
+	cy.Message_Page_Label()
+	cy.Click_Message_Page_One()
+})
+
+//testMessage{(Message Page, Click next page arrow --> previous page arrow) , (test case, true)}
+it('Verify message page click next page arrow', ()=>{
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_See_More_Button()
+	cy.Message_Page_Label()
+	cy.Click_Message_Page_Next_Arrow()
+})
+
+//testMessage{(Message Page, Click disable previous page arrow & active number when page 1) , (test case, true)}
+it('Verify message page click next page arrow', ()=>{
+	cy.Click_Message_Icon_On_Header()
+	cy.Message_See_More_Button()
+	cy.Message_Page_Label()
+	cy.Click_Message_Page_Disable_Arrow()
 })
