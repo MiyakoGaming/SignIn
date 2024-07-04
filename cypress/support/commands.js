@@ -1,9 +1,9 @@
-//Website_Homepage_URL
+//Website Homepage URL
 Cypress.Commands.add('Website_Homepage_URL', () => {
 	cy.visit('https://www.demoai1.com')
 })
 
-//Website_Sign_In_Page_URL
+//Website Sign In Page URL
 Cypress.Commands.add('Website_Sign_In_Page_URL', () => {
 	cy.visit('https://www.demoai1.com/auth/signin?redirect=/')
 })
@@ -260,59 +260,125 @@ Cypress.Commands.add('Navigation_SideMenu_To_Referral', () => {
 	cy.get(sideMenuReferralButton).click()
 })
 
-//Change password Page - Insert current & new password
+//Change password insert current password detail and validation message
 const currentPasswordContainer =
 	'.inputs_textContainer__ksnHm:nth-child(1) > input'
-const newPasswordContainer = '.inputs_textContainer__ksnHm:nth-child(2) > input'
-const retypePasswordContainer =
-	'.inputs_textContainer__ksnHm:nth-child(3) > input'
-const changePasswordButton =
-	'.change-password_actionContainer__wxvfo > .TT__standard-button'
-var currentPasswordPlaceholder = 'Current Password'
-var newPasswordPlaceholder = 'New Password'
-var retypePasswordPlaceholder = 'Retype Password'
-var changePasswordButtonText = 'Change password'
 
 Cypress.Commands.add(
-	'Change_Password_Details',
-	(currentPassword, newPassword, retypePassword) => {
-		cy.get(currentPasswordContainer)
-			.invoke('attr', 'placeholder')
-			.should('eq', currentPasswordPlaceholder)
+	'Insert_Current_Password_Detail_With_Validation',
+	currentPassword => {
 		cy.get(currentPasswordContainer).click()
 		cy.get(currentPasswordContainer).type(currentPassword)
 		cy.get(currentPasswordContainer)
 			.invoke('val')
 			.should('eq', currentPassword)
 			.and('have.length.gte', 8)
-			.and('have.length.lte', 30)
+			.and('have.length.lte', 40)
+	}
+)
 
-		cy.get(newPasswordContainer)
-			.invoke('attr', 'placeholder')
-			.should('eq', newPasswordPlaceholder)
+Cypress.Commands.add(
+	'Insert_Current_Password_Detail_Without_Validation',
+	currentPassword => {
+		cy.get(currentPasswordContainer).click()
+		cy.get(currentPasswordContainer).type(currentPassword)
+	}
+)
+
+Cypress.Commands.add('Current_Password_Validation_Message', () => {
+	cy.get(currentPasswordContainer)
+		.invoke('prop', 'validationMessage')
+		.should('equal', 'Please fill out this field.')
+})
+
+//Change password insert new password detail and validation message
+const newPasswordContainer = '.inputs_textContainer__ksnHm:nth-child(2) > input'
+
+Cypress.Commands.add(
+	'Insert_New_Password_Detail_With_Validation',
+	newPassword => {
 		cy.get(newPasswordContainer).click()
 		cy.get(newPasswordContainer).type(newPassword)
 		cy.get(newPasswordContainer)
 			.invoke('val')
 			.should('eq', newPassword)
 			.and('have.length.gte', 8)
-			.and('have.length.lte', 30)
+			.and('have.length.lte', 40)
+	}
+)
 
-		cy.get(retypePasswordContainer)
-			.invoke('attr', 'placeholder')
-			.should('eq', retypePasswordPlaceholder)
+Cypress.Commands.add(
+	'Insert_New_Password_Detail_Without_Validation',
+	newPassword => {
+		cy.get(newPasswordContainer).click()
+		cy.get(newPasswordContainer).type(newPassword)
+	}
+)
+
+Cypress.Commands.add('New_Password_Validation_Message', () => {
+	cy.get(newPasswordContainer)
+		.invoke('prop', 'validationMessage')
+		.should('equal', 'Please fill out this field.')
+})
+
+//Change password insert retype password detail and validation message
+const retypePasswordContainer =
+	'.inputs_textContainer__ksnHm:nth-child(3) > input'
+
+Cypress.Commands.add(
+	'Insert_Retype_Password_Detail_With_Validation',
+	retypePassword => {
 		cy.get(retypePasswordContainer).click()
 		cy.get(retypePasswordContainer).type(retypePassword)
 		cy.get(retypePasswordContainer)
 			.invoke('val')
 			.should('eq', retypePassword)
 			.and('have.length.gte', 8)
-			.and('have.length.lte', 30)
-
-		cy.get(changePasswordButton).should('have.text', changePasswordButtonText)
-		cy.get(changePasswordButton).click()
+			.and('have.length.lte', 40)
 	}
 )
+
+Cypress.Commands.add(
+	'Insert_Retype_Password_Detail_Without_Validation',
+	retypePassword => {
+		cy.get(retypePasswordContainer).click()
+		cy.get(retypePasswordContainer).type(retypePassword)
+	}
+)
+
+Cypress.Commands.add('Retype_Password_Validation_Message', () => {
+	cy.get(retypePasswordContainer)
+		.invoke('prop', 'validationMessage')
+		.should('equal', 'Please fill out this field.')
+})
+
+//Submit change password detail
+const submitChangePassword =
+	'.change-password_actionContainer__wxvfo > .TT__standard-button'
+var submitChangePasswordText = 'Change password'
+
+Cypress.Commands.add('Submit_Change_Password', () => {
+	cy.get(submitChangePassword).should('have.text', submitChangePasswordText)
+	cy.get(submitChangePassword).click()
+})
+
+//Error message below current Password
+const passwordErrorMessage = '.inputs_error__9uo7k'
+var errorCurrentPasswordText = 'Incorrect password'
+var errorNewPasswordText = 'The password must be more than 8 characters.'
+var errorRetyprPasswordText = "Doesn't match the new password."
+
+Cypress.Commands.add('Current_Password_Error_Message', () => {
+	cy.get(passwordErrorMessage).should('have.text', errorCurrentPasswordText)
+})
+
+Cypress.Commands.add('New_Password_Error_Message', () => {
+	cy.get(passwordErrorMessage).should('have.text', errorNewPasswordText)
+})
+
+Cypress.Commands.add('Retype_Password_Error_Message', () => {
+	cy.get(passwordErrorMessage).should('have.text', errorRetyprPasswordText)
+})
 
 //Deposit Page - Submit Deposit on the frontend
 const depositSelectionLabel =
@@ -1095,44 +1161,50 @@ Cypress.Commands.add('Click_3rd_Notification_In_Notification_Page', () => {
 })
 
 //History page Transfers tab
-const historyTransferTab = '.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(1)'
+const historyTransferTab =
+	'.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(1)'
 
-Cypress.Commands.add('Click_History_Page_Transfer_Tab', ()=>{
+Cypress.Commands.add('Click_History_Page_Transfer_Tab', () => {
 	cy.get(historyTransferTab).click()
 })
 
 //History page Deposits tab
-const historyDepositTab = '.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
+const historyDepositTab =
+	'.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
 
-Cypress.Commands.add('Click_History_Page_Deposit_Tab', ()=>{
+Cypress.Commands.add('Click_History_Page_Deposit_Tab', () => {
 	cy.get(historyDepositTab).click()
 })
 
 //History page Withdrawals tab
-const historyWithdrawTab = '.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
+const historyWithdrawTab =
+	'.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
 
-Cypress.Commands.add('Click_History_Page_Withdrawal_Tab', ()=>{
+Cypress.Commands.add('Click_History_Page_Withdrawal_Tab', () => {
 	cy.get(historyWithdrawTab).click()
 })
 
 //History page Rebates tab
-const historyRebateTab = '.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
+const historyRebateTab =
+	'.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
 
-Cypress.Commands.add('Click_History_Page_Rebates_Tab', ()=>{
+Cypress.Commands.add('Click_History_Page_Rebates_Tab', () => {
 	cy.get(historyRebateTab).click()
 })
 
 //History page Adjustments tab
-const historyAdjustmentTab = '.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
+const historyAdjustmentTab =
+	'.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
 
-Cypress.Commands.add('Click_History_Page_Adjustment_Tab', ()=>{
+Cypress.Commands.add('Click_History_Page_Adjustment_Tab', () => {
 	cy.get(historyAdjustmentTab).click()
 })
 
 //History page Bonus tab
-const historyBonusTab = '.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
+const historyBonusTab =
+	'.history_tabButtons__fSoCw > .history_tabButton__gMXo_:nth-child(3)'
 
-Cypress.Commands.add('Click_History_Page_Bonus_Tab', ()=>{
+Cypress.Commands.add('Click_History_Page_Bonus_Tab', () => {
 	cy.get(historyBonusTab).click()
 })
 
@@ -1145,28 +1217,60 @@ var historyRebateTabText = 'Rebates'
 var historyAdjustmentTabText = 'Adjustments'
 var historyBonusTabText = 'Bonus'
 
-Cypress.Commands.add('History_Page_Transfer_Active_Tab', ()=>{
+Cypress.Commands.add('History_Page_Transfer_Active_Tab', () => {
 	cy.get(historyActiveTab).should('have.text', historyTransferTabText)
 })
 
-Cypress.Commands.add('History_Page_Deposit_Active_Tab', ()=>{
+Cypress.Commands.add('History_Page_Deposit_Active_Tab', () => {
 	cy.get(historyActiveTab).should('have.text', historyDepositTabText)
 })
 
-Cypress.Commands.add('History_Page_Withdrawal_Active_Tab', ()=>{
+Cypress.Commands.add('History_Page_Withdrawal_Active_Tab', () => {
 	cy.get(historyActiveTab).should('have.text', historyWithdrawTabText)
 })
 
-Cypress.Commands.add('History_Page_Rebate_Active_Tab', ()=>{
+Cypress.Commands.add('History_Page_Rebate_Active_Tab', () => {
 	cy.get(historyActiveTab).should('have.text', historyRebateTabText)
 })
 
-Cypress.Commands.add('History_Page_Adjustment_Active_Tab', ()=>{
+Cypress.Commands.add('History_Page_Adjustment_Active_Tab', () => {
 	cy.get(historyActiveTab).should('have.text', historyAdjustmentTabText)
 })
 
-Cypress.Commands.add('History_Page_Bonus_Active_Tab', ()=>{
+Cypress.Commands.add('History_Page_Bonus_Active_Tab', () => {
 	cy.get(historyActiveTab).should('have.text', historyBonusTabText)
 })
 
 //Click Sign Up to play button
+const signUpButton =
+	':nth-child(1) > .user-quick-view_container__pFlJe > .user-quick-view_guestActions__La_tU > .user-quick-view_signUpLink__0WzNM'
+var signUpButtonText = 'Sign Up to Play'
+
+Cypress.Commands.add('Click_Sign_In_To_Play_Button', () => {
+	cy.get(signUpButton).should('have.text', signUpButtonText)
+	cy.get(signUpButton).click()
+})
+
+//Sign Up Page 1 Label
+const signUpPage1Label = '.auth_title__3fico'
+var signUpPage1LabelText = 'Register a new account'
+
+Cypress.Commands.add('Sign_Up_Page_1_Label', () => {
+	cy.get(signUpPage1Label).should('have.text', signUpPage1LabelText)
+})
+
+//Sign Up Page 2 Label
+const signUpPage2Label = '.auth_title__3fico'
+var signUpPage2LabelText = 'Create account'
+
+Cypress.Commands.add('Sign_Up_Page_2_Label', () => {
+	cy.get(signUpPage2Label).should('have.text', signUpPage2LabelText)
+})
+
+//Click Sign In link in Sign Up page
+const signInButtonInSignUpPage = '.auth_contentFooter__hxvPY > a'
+var signInButtonInSignUpPageText = 'Sign In'
+
+//Select country and insert Phone Number
+const registerCountryList = '.selected-flag'
+const registerPhoneNumberContainer = ''

@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Commands Table and row number</title>
+	</head>
+
+	<style>
+		#box {
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+		}
+
+		.odd {
+			background: lightgreen;
+		}
+
+		.even {
+			background: lightcyan;
+		}
+
+		#left {
+			display: flex;
+			width: 5%;
+			align-items: center;
+			justify-content: center;
+			padding: 5px 0;
+		}
+
+		#right {
+			display: flex;
+			flex: 1;
+			align-items: center;
+			padding: 5px 0;
+		}
+	</style>
+	<body>
+		<div id="box" style="background-color: gold">
+			<div id="left" class="boxes"><b>No.</b></div>
+			<div id="right" class="boxes"><b>Label</b></div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">1</div>
+			<div id="right" class="boxes">Website Homepage URL</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">6</div>
+			<div id="right" class="boxes">Website Sign In Page URL</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">11</div>
+			<div id="right" class="boxes">Click Sign In Button on homepage</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">21</div>
+			<div id="right" class="boxes">Sign In successfully</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">37</div>
+			<div id="right" class="boxes">
+				Sign In unsuccessfully and show error message pop up
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">54</div>
+			<div id="right" class="boxes">Verify Profile Username</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">61</div>
+			<div id="right" class="boxes">
+				Click Profile Username to My account Page
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">66</div>
+			<div id="right" class="boxes">My account Page Label</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">75</div>
+			<div id="right" class="boxes">Deposit Page Label</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">82</div>
+			<div id="right" class="boxes">Withdraw Page Label</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">89</div>
+			<div id="right" class="boxes">Transfer Page Label</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">96</div>
+			<div id="right" class="boxes">Manage Bank Page Label</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">103</div>
+			<div id="right" class="boxes">Link a Bank Account Page Label</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">113</div>
+			<div id="right" class="boxes">Referral Page Label</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">120</div>
+			<div id="right" class="boxes">Change Password Page Label</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">130</div>
+			<div id="right" class="boxes">
+				Click My Account tab on Side Menu --> My account page
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">137</div>
+			<div id="right" class="boxes">Click 3 dot indicator</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">143</div>
+			<div id="right" class="boxes">
+				Click manage Banks tab in 3 dot indicator menu --> Manage banks Page
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">151</div>
+			<div id="right" class="boxes">
+				Click Manage Banks tab on Side Menu --> Manage Banks page
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">158</div>
+			<div id="right" class="boxes">Click Manage banks on withdraw page</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">164</div>
+			<div id="right" class="boxes">
+				Click change password tab in 3 dot indicator menu --> Change Password
+				Page
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">173</div>
+			<div id="right" class="boxes">
+				Click Change Password tab on Side Menu --> Change Password page
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">180</div>
+			<div id="right" class="boxes">From homepage to Deposit</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">187</div>
+			<div id="right" class="boxes">
+				Click Deposit in My Account --> Deposit page
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">194</div>
+			<div id="right" class="boxes">
+				Click Deposit tab on Side Menu --> Deposit page
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">201</div>
+			<div id="right" class="boxes">From homepage to Transfer</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">208</div>
+			<div id="right" class="boxes">
+				Click Transfer in My Account --> Transfer page
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">215</div>
+			<div id="right" class="boxes">
+				Click Transfer tab on Side Menu -->Transfer page
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">222</div>
+			<div id="right" class="boxes">From homepage to Withdraw page</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">229</div>
+			<div id="right" class="boxes">
+				Click Withdraw in My Account --> Withdraw page
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">236</div>
+			<div id="right" class="boxes">
+				Click Withdraw tab on Side Menu --> Withdraw page
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">243</div>
+			<div id="right" class="boxes">
+				Click History in My Account --> History page
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">250</div>
+			<div id="right" class="boxes">
+				Click History tab on Side Menu --> History page
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">257</div>
+			<div id="right" class="boxes">
+				Click Referral tab on Side Menu --> Referral page
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">263</div>
+			<div id="right" class="boxes">
+				Change password insert current password detail and validation message
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">294</div>
+			<div id="right" class="boxes">
+				Change password insert new password detail and validation message
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">324</div>
+			<div id="right" class="boxes">
+				Change password insert retype password detail and validation message
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">355</div>
+			<div id="right" class="boxes">Submit change password detail</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">365</div>
+			<div id="right" class="boxes">Error message below current Password</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">383</div>
+			<div id="right" class="boxes">
+				Deposit Page - Submit Deposit on the frontend
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">408</div>
+			<div id="right" class="boxes">
+				Deposit Page - Deposit Success & Error message Pop Up
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">425</div>
+			<div id="right" class="boxes">
+				Manage Banks Page - Click "Link a bank" tab at My bank account page
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">433</div>
+			<div id="right" class="boxes">
+				Manage Banks Page - Select bank from dropdown list
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">441</div>
+			<div id="right" class="boxes">
+				Manage Banks Page - Account Number container
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">457</div>
+			<div id="right" class="boxes">
+				Manage Banks Page - Click "Link bank account" add bank
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">466</div>
+			<div id="right" class="boxes">
+				Manage Banks Page - Duplicated account number error pop up
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">485</div>
+			<div id="right" class="boxes">
+				Manage Banks Page - Show error message when reach bank account limit
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">492</div>
+			<div id="right" class="boxes">
+				Withdraw Page - Submit Withdraw on the frontend
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">512</div>
+			<div id="right" class="boxes">
+				Withdraw Page - Confirm or Cancel Submit Withdraw Pop Up
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">530</div>
+			<div id="right" class="boxes">
+				Withdraw Page - Withdraw & Uncheck Bank Error Message Pop Up
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">557</div>
+			<div id="right" class="boxes">Game Category Menu Tab</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">594</div>
+			<div id="right" class="boxes">Games sequence in Game Category</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">611</div>
+			<div id="right" class="boxes">
+				Click "Skip and proceed to game" to launch game
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">620</div>
+			<div id="right" class="boxes">
+				Error message Pop Up when failed to launch game
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">635</div>
+			<div id="right" class="boxes">
+				Open / close Transfer pop up - Homepage
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">648</div>
+			<div id="right" class="boxes">
+				Switch wallet between provider wallet and main wallet
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">666</div>
+			<div id="right" class="boxes">
+				Insert transfer amount in transfer page after select wallet
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">680</div>
+			<div id="right" class="boxes">
+				Click Transfer button in transfer page & transfer button disable when
+				amount above main wallet / provider wallet
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">698</div>
+			<div id="right" class="boxes">
+				Insert transfer amount in transfer pop up
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">708</div>
+			<div id="right" class="boxes">
+				Click Transfer button in transfer Pop up & transfer button disable when
+				amount above main wallet / provider wallet
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">725</div>
+			<div id="right" class="boxes">
+				Error message Pop Up show when transfer amount below 1 in Transfer Pop
+				Up
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">740</div>
+			<div id="right" class="boxes">
+				Transfer Page & Transfer Pop Up "Enter promo code" label
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">751</div>
+			<div id="right" class="boxes">
+				Transfer Page & Transfer Pop Up "Select promo" Label
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">762</div>
+			<div id="right" class="boxes">
+				Select promotion on Transfer page & Transfer Pop Up to apply promotion
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">774</div>
+			<div id="right" class="boxes">
+				Insert promotion code on Transfer page and Transfer Pop Up & apply
+				promotion
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">793</div>
+			<div id="right" class="boxes">
+				Apply promotion success in Transfer page & Transfer Pop Up
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">806</div>
+			<div id="right" class="boxes">
+				Scroll down to homepage promotion section & Promotion section Label
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">822</div>
+			<div id="right" class="boxes">Promotion Page Label</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">830</div>
+			<div id="right" class="boxes">
+				Click "View all promotions" button to promotion page
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">840</div>
+			<div id="right" class="boxes">Click 4 promotions in promotion page</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">871</div>
+			<div id="right" class="boxes">
+				Click 1st, 2nd, 3rd, 4th promotion on homepage promotion section
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">897</div>
+			<div id="right" class="boxes">
+				Scroll down to promotion content page & Promotion section Label
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">909</div>
+			<div id="right" class="boxes">
+				Click 1st, 2nd, 3rd promotions promotion content page "More promotions
+				For You" section
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">926</div>
+			<div id="right" class="boxes">Click message icon on header</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">933</div>
+			<div id="right" class="boxes">Message Pop up label</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">942</div>
+			<div id="right" class="boxes">Message See More button</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">950</div>
+			<div id="right" class="boxes">Message Page Label</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">958</div>
+			<div id="right" class="boxes">Click message Unread button</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">968</div>
+			<div id="right" class="boxes">Click message All button</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">978</div>
+			<div id="right" class="boxes">
+				Click message in Message Pop up, Learn more, Go to Promotion
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">1014</div>
+			<div id="right" class="boxes">
+				Click message in Message page, Learn more, Go to Promotion
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">1034</div>
+			<div id="right" class="boxes">
+				Message & Notification page Navigation arrow & number page
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">1068</div>
+			<div id="right" class="boxes">Click notification icon on header</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">1075</div>
+			<div id="right" class="boxes">Notification Pop Up label</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">1084</div>
+			<div id="right" class="boxes">Notification See More button</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">1092</div>
+			<div id="right" class="boxes">Notification Page Label</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">1100</div>
+			<div id="right" class="boxes">Click notification Unread button</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">1113</div>
+			<div id="right" class="boxes">Click notification All button</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">1123</div>
+			<div id="right" class="boxes">
+				Click notification in notification pop up
+			</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">1143</div>
+			<div id="right" class="boxes">
+				Click notification in notification page
+			</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">1163</div>
+			<div id="right" class="boxes">History page Transfers tab</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">1171</div>
+			<div id="right" class="boxes">History page Deposits tab</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">1179</div>
+			<div id="right" class="boxes">History page Withdrawals tab</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">1187</div>
+			<div id="right" class="boxes">History page Rebates tab</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">1195</div>
+			<div id="right" class="boxes">History page Adjustments tab</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">1203</div>
+			<div id="right" class="boxes">History page Bonus tab</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">1211</div>
+			<div id="right" class="boxes">History Page Active Tab</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">1244</div>
+			<div id="right" class="boxes">Click Sign Up to play button</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">1254</div>
+			<div id="right" class="boxes">Sign Up Page 1 Label</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">1262</div>
+			<div id="right" class="boxes">Sign Up Page 2 Label</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes">1270</div>
+			<div id="right" class="boxes">Click Sign In link in Sign Up page</div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes">1274</div>
+			<div id="right" class="boxes">Select country and insert Phone Number</div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="even">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+		<div id="box" class="odd">
+			<div id="left" class="boxes"></div>
+			<div id="right" class="boxes"></div>
+		</div>
+	</body>
+</html>
