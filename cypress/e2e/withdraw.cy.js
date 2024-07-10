@@ -8,6 +8,12 @@
 //8. testWithdraw{(valid amount, check bank, true, cancel) , (test case, true)}
 //9. testWithdraw{(valid amount, check bank, true, confirm) , (test case, true)}
 
+// ***********************************
+//1. testWithdraw{(Click withdraw icon in Homepage --> withdraw page) , (test case, true)}
+//2. testWithdraw{(Click withdraw icon in Account page --> withdraw page) , (test case, true)}
+//3. testWithdraw{(Click withdraw tab on Side Menu --> withdraw page) , (test case, true)}
+//4. testWithdraw{(Click withdraw button in profile pop up --> withdraw page) , (test case, true)}
+
 Cypress.on('uncaught:exception', (err, runnable) => {
 	// Fail the test
 	throw err
@@ -32,8 +38,34 @@ beforeEach(() => {
 	cy.Website_Sign_In_Page_URL()
 	cy.Test_Login_Account(validUsername, validPassword)
 	cy.Profile_Username(validUsername)
+	// cy.Navigation_Homepage_To_Withdraw()
+	// cy.Withdraw_Page_Label()
+})
+
+//testWithdraw{(Click withdraw icon in Homepage --> withdraw page) , (test case, true)}
+it('Click withdraw icon in Homepage --> withdraw page', ()=>{
 	cy.Navigation_Homepage_To_Withdraw()
 	cy.Withdraw_Page_Label()
+})
+
+//testWithdraw{(Click withdraw icon in Account page --> withdraw page) , (test case, true)}
+it('Click withdraw icon in Account page --> withdraw page', ()=>{
+	cy.Click_Profile_Username()
+	cy.My_Account_Page_Label()
+	cy.Navigation_AccountPage_To_Withdraw()
+	cy.Withdraw_Page_Label()
+})
+
+//testWithdraw{(Click withdraw tab on Side Menu --> withdraw page) , (test case, true)}
+it('Click withdraw icon in Account page --> withdraw page', ()=>{
+	cy.Click_Profile_Username()
+	cy.Navigation_Homepage_To_Deposit()
+	cy.Navigation_SideMenu_To_Withdraw()
+	cy.Withdraw_Page_Label()
+})
+
+//testWithdraw{(Click withdraw button in profile pop up --> withdraw page) , (test case, true)}
+it.skip('Click withdraw icon in Account page --> withdraw page', ()=>{
 })
 
 //testWithdraw{(invalid amount, uncheck bank, false) , (test case, false)}

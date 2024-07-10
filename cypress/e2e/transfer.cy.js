@@ -11,6 +11,13 @@
 //11. testTransfer{(Click All in, single provider) , (test case, true)}
 //12. testTransfer{(Click Restore All, all providers) , (test case, true)}
 
+
+//******************************** */
+//1. testTransfer{(Click transfer icon in Homepage --> transfer page) , (test case, true)}
+//2. testTransfer{(Click transfer icon in Account page --> transfer page) , (test case, true)}
+//3. testTransfer{(Click transfer tab on Side Menu --> transfer page) , (test case, true)}
+//4. testTransfer{(Click transfer button in profile pop up --> transfer page) , (test case, true)}
+
 Cypress.on('uncaught:exception', (err, runnable) => {
 	// Fail the test
 	throw err
@@ -36,6 +43,34 @@ beforeEach(() => {
 	cy.Website_Sign_In_Page_URL()
 	cy.Test_Login_Account(validUsername, validPassword)
 	cy.Profile_Username(validUsername)
+})
+
+
+//testTransfer{(Click transfer icon in Homepage --> transfer page) , (test case, true)}
+it('Click transfer icon in Homepage --> transfer page', ()=>{
+	cy.Navigation_Homepage_To_Transfer()
+	cy.Transfer_Page_Label()
+})
+
+//testTransfer{(Click transfer icon in Account page --> transfer page) , (test case, true)}
+it('Click transfer icon in Account page --> transfer page', ()=>{
+	cy.Click_Profile_Username()
+	cy.My_Account_Page_Label()
+	cy.Navigation_AccountPage_To_Transfer()
+	cy.Transfer_Page_Label()
+})
+
+//testTransfer{(Click transfer tab on Side Menu --> transfer page) , (test case, true)}
+it('Click transfer tab on Side Menu --> transfer page', ()=>{
+	cy.Click_Profile_Username()
+	cy.Navigation_Homepage_To_Deposit()
+	cy.Navigation_SideMenu_To_Transfer()
+	cy.Transfer_Page_Label()
+})
+
+//testTransfer{(Click transfer button in profile pop up --> transfer page) , (test case, true)}
+it.skip('Click transfer button in profile pop up --> transfer page', ()=>{
+	
 })
 
 //testTransfer{(Transfer credit into Provider on Transfer page, max invalid amount) , (test case, true)}

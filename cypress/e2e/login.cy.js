@@ -1,9 +1,8 @@
 //1. testSignIn{(valid username, valid password, true) , (test case, true)}
-//2. testSignIn{(valid username, valid password, true) , (test case, false)}
-//3. testSignIn{(valid username, invalid password, false) , (test case, false)}
-//4. testSignIn{(invalid username, valid password, false) , (test case, false)}
-//5. testSignIn{(invalid username, invalid password, false) , (test case, false)}
-//6. testSignIn{(invalid username, invalid password, false) , (test case, true)}
+//2. testSignIn{(valid username, invalid password, false) , (test case, true)}
+//3. testSignIn{(invalid username, valid password, false) , (test case, true)}
+//4. testSignIn{(invalid username, invalid password, false) , (test case, true}
+//5. testSignIn{(invalid username, invalid password, false) , (test case, false}
 
 Cypress.on('uncaught:exception', (err, runnable) => {
 	// Fail the test
@@ -27,36 +26,28 @@ beforeEach(() => {
 it('Verify successful user authentication with valid username and password', () => {
 	cy.Test_Login_Account(validUsername, validPassword)
 	cy.Profile_Username(validUsername)
-	cy.Click_Profile_Username()
-	cy.My_Account_Page_Label(validUsername)
 })
 
-//testSignIn{(valid username, valid password, true) , (test case, false)}
-it('Verify unsuccessful user authentication with valid username and password', () => {
-	cy.Test_Login_Account(validUsername, validPassword)
-	cy.Profile_Username(invalidUsername)
-})
-
-//testSignIn{(valid username, invalid password, false) , (test case, false)}
+//testSignIn{(valid username, invalid password, false) , (test case, true)}
 it('Verify unsuccessful user authentication with valid username and invalid password', () => {
 	cy.Test_Login_Account(validUsername, invalidPassword)
-	cy.Profile_Username(validUsername)
+	cy.Sign_In_Error_message()
 })
 
-//testSignIn{(invalid username, valid password, false) , (test case, false)}
+//testSignIn{(invalid username, valid password, false) , (test case, true)}
 it('Verify unsuccessful user authentication with invalid username and valid password', () => {
 	cy.Test_Login_Account(invalidUsername, validPassword)
-	cy.Profile_Username(validUsername)
+	cy.Sign_In_Error_message()
 })
 
-//testSignIn{(invalid username, invalid password, false) , (test case, false)}
-it('Verify unsuccessful user authentication with invalid username and password', () => {
-	cy.Test_Login_Account(invalidUsername, invalidPassword)
-	cy.Profile_Username(validUsername)
-})
-
-//testSignIn{(invalid username, invalid password, false) , (test case, true)}
+//testSignIn{(invalid username, invalid password, false) , (test case, true}
 it('Verify unsuccessful user authentication with invalid username and password', () => {
 	cy.Test_Login_Account(invalidUsername, invalidPassword)
 	cy.Sign_In_Error_message()
+})
+
+//testSignIn{(invalid username, invalid password, false) , (test case, false}
+it('Verify unsuccessful user authentication with invalid username and password', () => {
+	cy.Test_Login_Account(invalidUsername, invalidPassword)
+	cy.Profile_Username(validUsername)
 })
